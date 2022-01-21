@@ -27,18 +27,18 @@ class Equipment_connectInline(admin.TabularInline):
 
 @admin.register(Channels)
 class ChannelsAdmin(ModelAdmin):
-    list_display = ['channel_name','object_a', 'object_b', 'location'] 
+    list_display = ['channel_name','object_a', 'object_b'] 
     ordering = ['channel_name']
     search_fields = ['channel_name']
-    #filter_horizontal = ['equipment_connect']
+    filter_horizontal = ['equipment_connect']
     inlines = [Equipment_connectInline,]
     exclude = ('equipment_connect',)
 
-class PersonForm(forms.ModelForm):
-    extra_field = forms.FileInput()
-    class Meta:
-        model = Channels
-        fields = '__all__'
+#class PersonForm(forms.ModelForm):
+ #   extra_field = forms.FileInput()
+  #  class Meta:
+   #     model = Channels
+     #   fields = '__all__'
 
 
 
