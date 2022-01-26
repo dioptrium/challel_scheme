@@ -42,6 +42,12 @@
         </ul>
       </div>
     </div>
+    <div class="navbar-nav text-white" >
+      {{request.user}} 
+    </div>
+      <div class="col-md-1 navbar-nav text-right" >
+      <a href="{% url 'logout' %}" class="nav-link" >Выход</a>
+    </div>
   </nav>
   
 {% block content %}
