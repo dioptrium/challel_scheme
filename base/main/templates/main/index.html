@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> База </title>
-    <script src="{% static 'main/jquery/jquery-3.6.0.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/jquery/jquery-3.6.0.js' %}"></script>
     <script src="{% static 'main/bootstrap/js/bootstrap.bundle.js'%}"></script>
+    <script src="{% static 'main/tablesorter/jquery.tablesorter.min.js' %}"></script>
+    <script src="{% static 'main/tablesorter/jquery.tablesorter.widgets.js' %}"></script>
+    <script src="{% static 'main/tablesorter/widget-output.js' %}"></script>
+    <script src="{% static 'main/tablesorter/widget-print.js' %}"></script>
+    <script src="{% static 'main/js/main.js' %}"></script>
     <!--<script src="{% static 'main/bootstrap/dist/js/bootstrap.js'%}"></script>--> 
     <link rel="stylesheet" href="{% static 'main/bootstrap/css/bootstrap.css' %}">
     
@@ -14,7 +19,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Channels</a>
+      <a class="navbar-brand" href="#">{% block title %} Модуль {% endblock %}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,7 +29,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Channels</a>
+            <a class="nav-link" href="{% url 'url_locations' %}"">Channels</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Menu 3</a>

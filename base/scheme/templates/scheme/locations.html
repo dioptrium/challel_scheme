@@ -1,0 +1,22 @@
+{% extends 'main/index.html' %}
+
+{% block title %} Объекты {% endblock %}
+
+{% block content %}
+
+    <table>     
+        <thead>
+            <th>Название объекта</th>
+            <th>Адрес</th>
+        </thead>
+        <tbody>
+        {% for i in locations %}
+        <tr>
+            <td>{{i.location}}</td>
+            <td>{{i.addresss}}</td>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+
+{% endblock%} 
