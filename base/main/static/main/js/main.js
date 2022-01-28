@@ -1,13 +1,6 @@
 $(function() {
 
-  /* код сохранения в csv - не работающий (выключен)
-  var $table = $('table');
-  $('.download').click(function() {
-      // tell the output widget do it's thing
-      $table.trigger('outputTable');
-  })*/
- 
-       
+      
     // NOTE: $.tablesorter.themes.bootstrap is ALREADY INCLUDED in the jquery.tablesorter.widgets.js
     // file; it is included here to show how you can modify the default classes
     $.tablesorter.themes.bootstrap = {
@@ -48,7 +41,7 @@ $(function() {
   
       // widget code contained in the jquery.tablesorter.widgets.js file
       // use the zebra stripe widget if you plan on hiding any rows (filter widget)
-      widgets : [ "uitheme", "filter", "columns", "zebra", "print", /*"columnSelector", "output"*/],
+      widgets : [ "uitheme", "filter", "columns", "zebra", "print", "stikyHeaders"/*"columnSelector", "output"*/],
   
       widgetOptions : {
         // using the default zebra striping class name, so it actually isn't included in the theme variable above
@@ -123,3 +116,47 @@ $(function() {
       $('.tablesorter').trigger('printTable');
     });
 });
+
+//Export file in xls
+function exportTableToExcel(tableID, filename = ''){
+  var downloadLink;
+  var dataType = 'application/vnd.ms-excel';
+  var tableSelect = document.getElementById(tableID);
+  var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+  
+  // Specify file name
+  filename = filename?filename+'.xls':'excel_data.xls';
+  
+  // Create download link element
+  downloadLink = document.createElement("a");
+  
+  document.body.appendChild(downloadLink);
+  
+  if(navigator.msSaveOrOpenBlob){
+      var blob = new Blob(['\ufeff', tableHTML], {
+          type: dataType
+      });
+      navigator.msSaveOrOpenBlob( blob, filename);
+  }else{
+      // Create a link to the file
+      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+  
+      // Setting the file name
+      downloadLink.download = filename;
+      
+      //triggering the function
+      downloadLink.click();
+  }
+}
+
+  $(document).ready(function()  {
+    $("#hidebutton").hide('slow').show('slow');
+  });
+
+  
+  
+/*$(document).ready(function() {
+  var $elFrom = $('td[id="from1"]').value;
+  $('td[id="in"]').text($elFrom);
+  });*/
+

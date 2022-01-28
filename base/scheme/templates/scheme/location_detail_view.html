@@ -1,0 +1,26 @@
+{% extends 'main/index.html' %}
+
+{% block title %} {{location_detail.location}} {% endblock %}
+
+{% block content %}
+
+    <table id='tblData'>     
+        <thead>
+            <th>Название объекта</th>
+            <th>Адрес</th>
+            <th>Оборудование </th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{location_detail.location}}</td>
+            <td>{{location_detail.address}}</td>
+           <td>{%for i in location_detail.location_con.all%}
+               {{i.equipment}} <br>
+               {%endfor%}
+           </td>
+        </tr>
+      
+        </tbody>
+    </table>
+
+{% endblock%} 

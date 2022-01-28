@@ -1,0 +1,28 @@
+{% extends 'main/index.html' %}
+
+{% block title %} Каналы {% endblock %}
+
+{% block content %}
+
+    <table id='tblData'>     
+        <thead>
+            <th>Канал</th>
+            <th>Объект А</th>
+            <th>Объект B</th>
+            <th>Трафик</th>
+            <th>Описание</th>
+        </thead>
+        <tbody>
+        {% for i in channels %}
+        <tr>
+            <td><a href="{% url 'url_channel_detail_view' i.id %}">{{i.channel_name}}</a></td>
+            <td>{{i.object_a}}</td>
+            <td>{{i.object_b}}</td>
+            <td>{{i.traffic}}</td>
+            <td>{{i.description}}</td>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+
+{% endblock%} 

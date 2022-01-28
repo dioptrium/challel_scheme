@@ -1,0 +1,28 @@
+{% extends 'main/index.html' %}
+
+{% block title %} {{channel_detail.channel_name}} {% endblock %}
+
+{% block content %}
+
+    <table id='tblData'>     
+        <thead>
+            <th>Наименование канала</th>
+            <th>ОбъектА</th>
+            <th>Объект Б </th>
+            <th>Трафик </th>
+            <th>Описание </th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{channel_detail.channel_name}}</td>
+            <td>{{channel_detail.object_a}}</td>
+            <td>{{channel_detail.object_b}}</td>
+            <td>{{channel_detail.traffic}}</td>
+            <td>{{location_detail.descriptin}}</td>
+         
+        </tr>
+      
+        </tbody>
+    </table>
+
+{% endblock%} 

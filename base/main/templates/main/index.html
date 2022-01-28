@@ -9,11 +9,12 @@
     <script src="{% static 'main/bootstrap/js/bootstrap.bundle.js'%}"></script>
     <script src="{% static 'main/tablesorter/jquery.tablesorter.min.js' %}"></script>
     <script src="{% static 'main/tablesorter/jquery.tablesorter.widgets.js' %}"></script>
-    <script src="{% static 'main/tablesorter/widget-output.js' %}"></script>
-    <script src="{% static 'main/tablesorter/widget-print.js' %}"></script>
+    <script src="{% static 'main/tablesorter/widget-output.min.js' %}"></script>
+    <script src="{% static 'main/tablesorter/widget-print.min.js' %}"></script>
     <script src="{% static 'main/js/main.js' %}"></script>
     <!--<script src="{% static 'main/bootstrap/dist/js/bootstrap.js'%}"></script>--> 
     <link rel="stylesheet" href="{% static 'main/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'main/tablesorter/theme.bootstrap_4.min.css' %}">
     
 </head>
 <body>
@@ -29,10 +30,10 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'url_locations' %}"">Channels</a>
+            <a class="nav-link" href="{% url 'url_channels' %}">Каналы</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Menu 3</a>
+            <a class="nav-link" href="{% url 'url_locations' %}">Объекты</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,6 +47,13 @@
           </li>
         </ul>
       </div>
+    </div>
+
+    <div class='col-md-1 text-right'>
+      <button class="btn btn-info btn-sm print button" style="font-size : 0.65em">Печать</button>
+    </div>
+    <div class='col-md-1 text-right'>
+      <button class="btn btn-info btn-sm" style="font-size : 0.65em"  onclick="exportTableToExcel('tblData', 'export')">Сохранить в файл</button>
     </div>
     <div class="navbar-nav text-white" >
       {{request.user}} 

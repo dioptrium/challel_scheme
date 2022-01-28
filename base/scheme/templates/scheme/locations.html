@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <table>     
+    <table id='tblData'>     
         <thead>
             <th>Название объекта</th>
             <th>Адрес</th>
@@ -12,8 +12,8 @@
         <tbody>
         {% for i in locations %}
         <tr>
-            <td>{{i.location}}</td>
-            <td>{{i.addresss}}</td>
+            <td><a href="{% url 'url_location_detail_view' i.id %}">{{i.location}}</a></td>
+            <td>{{i.address}}</td>
         </tr>
         {%endfor%}
         </tbody>
