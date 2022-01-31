@@ -20,6 +20,11 @@
             <td>{{i.object_b}}</td>
             <td>{{i.traffic}}</td>
             <td>{{i.description}}</td>
+
+            <td>
+            {% for inc in i.equipment_connect.all%}
+                {{inc}} {{inc.locations_connect }}<br>
+                {%endfor%}</td>
         </tr>
         {%endfor%}
         </tbody>

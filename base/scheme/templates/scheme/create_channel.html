@@ -1,0 +1,45 @@
+{% extends 'main/index.html' %}
+{% block title %}Создание канала{% endblock %}
+{% block content %}
+
+<div>
+    </table>
+    <form method='POST'>
+    {% csrf_token %}
+    <table>
+        
+          {{form.channel_name}} <br>
+            {{form.object_a}}<br>
+            {{form.object_b}}<br>
+            {{form.traffic}}<br>
+           {{form.description}}<br>
+            {{form.equipment_connect}}<br>
+
+           
+        
+</div>
+    <div> 
+        {% if form.errors %}
+       {% for field in form %}
+              {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                          <strong>{{ error }}</strong>
+                    </div>
+              {% endfor %}
+       {% endfor %}
+       {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                    <strong>{{ error }}</strong>
+              </div>
+       {% endfor %}
+{% endif %}
+</div>
+        <span>{{errorss}}</span>
+        <button type="submit"> Создать </button>
+    </div>
+    </form>
+    {% for i in form.equipment_connect%}
+    {{i}} {{i.equipmentcon.description}} <br>
+{%endfor%}
+
+{% endblock %} 

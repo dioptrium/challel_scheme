@@ -7,5 +7,6 @@ urlpatterns = [
     path('<int:pk>/location_detail_view', permission_required('scheme.view_locationdetailview')(views.LocationDetailView.as_view()), name='url_location_detail_view'),
     path('channels', permission_required('scheme.view_channels')(views.ChannelsView), name='url_channels'),
     path('<int:pk>/channel_detail_view', permission_required('scheme.view_channeldetailview')(views.ChannelDetailView.as_view()), name='url_channel_detail_view'),
+    path('create_channel', permission_required('scheme.add_channel')(views.CreateChannelView), name='url_create_channel'),
     
 ]

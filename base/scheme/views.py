@@ -1,6 +1,9 @@
-from django.shortcuts import render
+import re
+from urllib import request
+from django.shortcuts import render, redirect
 from .models import Channels, Equipment, Locations
 from django.views.generic import ListView, DeleteView, UpdateView, DetailView
+from .forms import *
 
 
 def LocationsView(request):
@@ -22,3 +25,16 @@ class ChannelDetailView(DetailView):
     model = Channels
     template_name = 'scheme/channel_detail_view.html'
     context_object_name = 'channel_detail'
+
+def CreateChannelView(request):
+    error=''
+    if request.method=='POST':
+        form= ChannelForm(request.POST)
+        if form.is_valid():
+            channel = form.save()
+            return redirect (channel)
+        else:
+            error = 'Mistake'
+    form=ChannelForm()
+    context = {'form':form, 'error':error}
+    return render (request, 'scheme/create_channel.html', context)

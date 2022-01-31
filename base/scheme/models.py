@@ -6,7 +6,7 @@ class Channels(models.Model):
     object_b = models.CharField(max_length=100, verbose_name='Объект Б')
     traffic = models.CharField(max_length=30, verbose_name='Трафик')
     description = models.CharField(max_length=3000, verbose_name='Описание')
-    equipment_connect = models.ManyToManyField ('Equipment', related_name='equipment_conn', verbose_name='Оборудование')
+    equipment_connect = models.ManyToManyField ('Equipment', related_name='equipmentcon', verbose_name='Оборудование')
     class Meta:
             verbose_name = 'Канал'
             verbose_name_plural = 'Каналы'
@@ -19,7 +19,7 @@ class Channels(models.Model):
 class Equipment(models.Model):
     equipment = models.CharField(max_length=100, verbose_name='Оборудование')
     description = models.CharField(max_length=200, verbose_name='Описание ')
-    locations_connect = models.ForeignKey('Locations', on_delete=models.PROTECT,blank=True, null=True, related_name='location_con', verbose_name='Прохождение по оборудованию') 
+    locations_connect = models.ForeignKey('Locations', on_delete=models.PROTECT,blank=True, null=True, related_name='locationcon', verbose_name='Прохождение по оборудованию') 
     class Meta:
         verbose_name = 'Оборудование'
         verbose_name_plural = 'Оборудование'
