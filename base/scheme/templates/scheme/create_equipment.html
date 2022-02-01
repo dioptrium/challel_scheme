@@ -1,24 +1,20 @@
 {% extends 'main/index.html' %}
 {% block title %}Создание канала{% endblock %}
-{% block content %}
 
+
+{% block content %}
+gfh
 <div>
     </table>
     <form method='POST'>
     {% csrf_token %}
-    
-        <div>
-          {{form.channel_name}} <br>
-            {{form.object_a}}<br>
-            {{form.object_b}}<br>
-            {{form.traffic}}<br>
-           {{form.description}}<br>
-            {{form.equipment_connect}}<br>   
-            {%for i in locations%}
-    
-            {{i}} <br>
-            {% endfor %}
+
+    {{ form.as_table }}
+    {% for i in form.locations_connect%}
+          {{i.locations.address}}
+    {%endfor%}
             
+        
 </div>
     <div> 
         {% if form.errors %}
@@ -36,9 +32,9 @@
        {% endfor %}
 {% endif %}
 </div>
-        <span>{{errorss}}</span>
+        <span>{{errors}}</span>
         <button type="submit"> Создать </button>
     </div>
     </form>
-   
+
 {% endblock %} 

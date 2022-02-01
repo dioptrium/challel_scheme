@@ -27,6 +27,7 @@ class ChannelDetailView(DetailView):
     context_object_name = 'channel_detail'
 
 def CreateChannelView(request):
+    locations = Locations.objects.all()
     error=''
     if request.method=='POST':
         form= ChannelForm(request.POST)
@@ -36,5 +37,18 @@ def CreateChannelView(request):
         else:
             error = 'Mistake'
     form=ChannelForm()
-    context = {'form':form, 'error':error}
+    context = {'form':form, 'error':error, 'locations':locations}
     return render (request, 'scheme/create_channel.html', context)
+
+def CreateEquipmentView(request):
+    error=''
+    if request.method=='POST':
+        form= EquipmentForm(request.POST)
+        if form.is_valid():
+            equipment = form.save()
+            return redirect (equipment)
+        else:
+            error = 'Mistake'
+    form=EquipmentForm()
+    context = {'form':form, 'error':error}
+    return render (request, 'scheme/create_equipment.html', context)

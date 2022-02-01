@@ -8,5 +8,6 @@ urlpatterns = [
     path('channels', permission_required('scheme.view_channels')(views.ChannelsView), name='url_channels'),
     path('<int:pk>/channel_detail_view', permission_required('scheme.view_channeldetailview')(views.ChannelDetailView.as_view()), name='url_channel_detail_view'),
     path('create_channel', permission_required('scheme.add_channel')(views.CreateChannelView), name='url_create_channel'),
+    path('create_equipment', permission_required('scheme.add_equipment')(views.CreateEquipmentView), name='url_create_equipment'),
     
 ]
