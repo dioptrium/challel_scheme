@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <table id='tblData'>     
+  <table id='tblData'>     
         <thead>
             <th>Канал</th>
             <th>Объект А</th>
@@ -23,7 +23,7 @@
 
             <td>
             {% for inc in i.equipment_connect.all%}
-                {{inc}} {{inc.locations_connect }}<br>
+                {{inc}} {{inc.locations_connect.location }}<br>
                 {%endfor%}</td>
         </tr>
         {%endfor%}

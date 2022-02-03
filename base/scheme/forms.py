@@ -15,10 +15,13 @@ class EquipmentForm(forms.ModelForm):
 
 
 class ChannelForm(forms.ModelForm):
+    #field = forms.CharField(label='Your name', max_length=100)
     class Meta:
         model=Channels
         fields =['channel_name', 'object_a', 'object_b','traffic','description','equipment_connect',]
 
-
-    equipment_connect = forms.ModelMultipleChoiceField(queryset=Equipment.objects.all(), widget=forms.CheckboxSelectMultiple)
+    i = Equipment.objects.all()
+   
+    equipment_connect = forms.ModelMultipleChoiceField(queryset=i, widget=forms.CheckboxSelectMultiple)
+    locations_connect = Locations.objects.all()
 

@@ -1,4 +1,5 @@
 {% extends 'main/index.html' %}
+{% load scheme_tags %}
 {% block title %}Создание канала{% endblock %}
 {% block content %}
 
@@ -7,17 +8,26 @@
     <form method='POST'>
     {% csrf_token %}
     
-        <div>
+       <!-- <div>
           {{form.channel_name}} <br>
             {{form.object_a}}<br>
             {{form.object_b}}<br>
             {{form.traffic}}<br>
-           {{form.description}}<br>
+            {{form.description}}<br>
             {{form.equipment_connect}}<br>   
-            {%for i in locations%}
-    
-            {{i}} <br>
-            {% endfor %}
+            {%for i in form.equipment_connect %}
+            {{i}} {{i.equipment.description}} <br>
+            {%endfor%} -->
+
+            {{form.as_p}}
+            {{forform.equipment_connect}}
+            {{form.locations_connect.locations.all}}
+            {%for i in form.locations_connect.all%}
+            {{address}}
+            {%endfor%}
+
+           
+            
             
 </div>
     <div> 
