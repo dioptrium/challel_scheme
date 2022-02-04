@@ -1,10 +1,12 @@
-import re
-from urllib import request
-from django.shortcuts import render, redirect
-from .models import Channels, Equipment, Locations
-from django.views.generic import ListView, DeleteView, UpdateView, DetailView
-from .forms import *
 
+from urllib import request
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Channels, Equipment, Locations
+from django.views.generic import ListView, DeleteView, UpdateView, DetailView, CreateView
+from .forms import *
+from .models import *
+from django.forms import modelformset_factory
+from django.urls import reverse
 
 def LocationsView(request):
     locations = Locations.objects.all()
@@ -26,6 +28,51 @@ class ChannelDetailView(DetailView):
     template_name = 'scheme/channel_detail_view.html'
     context_object_name = 'channel_detail'
 
+
+class CreateLocationView(CreateView):
+    form_class = LocationForm
+    template_name = 'scheme/create_location.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(CreateLocationView, self).get_context_data(**kwargs)
+        
+        context['equipment_formset'] = EquipmentInlineFormset()
+        return context
+    
+    def post(self,request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        equipment_formset = EquipmentInlineFormset(self.request.POST)
+        if form.is_valid() and equipment_formset.is_valid():
+            return self.form_valid(form, equipment_formset)
+        else:
+            return self.form_invalid(form, equipment_formset)
+        
+    def form_valid(self, form, equipment_formset):
+        self.object = form.save(commit=False)
+        self.object.save()
+        
+        equipment_1 =equipment_formset.save(commit=False)
+        for eq in equipment_1:
+            eq.locations_connect = self.object
+            eq.save()
+            return redirect(reverse('location:location_list'))
+        
+    def form_invalid(self, form, equiment_formset):
+        return self.render_to_response(
+            self.get_context_data(form=form, equiment_formset = equiment_formset)
+        )
+            
+
+
+
+
+
+
+
+
+
 def CreateChannelView(request):
     locations = Locations.objects.all()
     error=''
@@ -39,6 +86,7 @@ def CreateChannelView(request):
     form=ChannelForm()
     context = {'form':form, 'error':error, 'locations':locations}
     return render (request, 'scheme/create_channel.html', context)
+
 
 def CreateEquipmentView(request):
     error=''

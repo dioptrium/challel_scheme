@@ -1,39 +1,28 @@
 from ast import Eq
 from django import forms
 from .models import Channels, Equipment, Locations
-from django.forms import formset_factory
+from django.forms import formset_factory, inlineformset_factory
 
 
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model=Locations
+        fields = ['location','address']
+        
 class EquipmentForm(forms.ModelForm):
     class Meta:
         model=Equipment
         fields = ['equipment','description','locations_connect']
 
-  
-
-#EquipmentFormSet = formset_factory(EquipmentForm, extra=1)
+EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=5)
 
 
-"""class ChannelForm(forms.ModelForm):
-    #field = forms.CharField(label='Your name', max_length=100)
-    class Meta:
-        model=Channels
-        fields =['channel_name', 'object_a', 'object_b','traffic','description','equipment_connect',]
-
-    equipment_queryset = Equipment.objects.order_by('-locations_connect')
-    
-   
-    equipment_connect = forms.ModelMultipleChoiceField(queryset=equipment_queryset, widget=forms.CheckboxSelectMultiple)
-    locations_connect = Locations.objects.all()"""
 
 
+'''Переопределение ModelMultipleChoiceField'''
 
 from itertools import groupby
-from django import forms
 from django.forms.models import ModelChoiceIterator, ModelMultipleChoiceField
-
-from .models import *
-
 
 class GroupedModelMultipleChoiceField(ModelMultipleChoiceField):
 
@@ -56,7 +45,6 @@ class GroupedModelMultipleChoiceField(ModelMultipleChoiceField):
         return GroupedModelChoiceIterator(self)
     choices = property(_get_choices, ModelMultipleChoiceField._set_choices)
 
-
 class GroupedModelChoiceIterator(ModelChoiceIterator):
 
     def __iter__(self):
@@ -74,8 +62,7 @@ class GroupedModelChoiceIterator(ModelChoiceIterator):
                     self.field.group_label(group),
                     [self.choice(ch) for ch in choices])
 
-"""hjksdhfksjdhakh"""
-
+"""дополнительно"""
 class GroupedCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
 
     def optgroups(self, name, value, attrs=None):
@@ -141,8 +128,6 @@ class GroupedCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
             'group': group,
         }
 
-
-
 class ChannelForm(forms.ModelForm):
     class Meta:
         model = Channels
@@ -156,3 +141,14 @@ class ChannelForm(forms.ModelForm):
             widget=forms.CheckboxSelectMultiple(),
             required=False)
         
+"""class ChannelForm(forms.ModelForm):
+    #field = forms.CharField(label='Your name', max_length=100)
+    class Meta:
+        model=Channels
+        fields =['channel_name', 'object_a', 'object_b','traffic','description','equipment_connect',]
+
+    equipment_queryset = Equipment.objects.order_by('-locations_connect')
+    
+   
+    equipment_connect = forms.ModelMultipleChoiceField(queryset=equipment_queryset, widget=forms.CheckboxSelectMultiple)
+    locations_connect = Locations.objects.all()"""
