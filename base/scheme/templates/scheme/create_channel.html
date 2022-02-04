@@ -4,29 +4,37 @@
 {% block content %}
 
 <div>
-    </table>
+  
     <form method='POST'>
     {% csrf_token %}
     
-       <!-- <div>
-          {{form.channel_name}} <br>
-            {{form.object_a}}<br>
-            {{form.object_b}}<br>
-            {{form.traffic}}<br>
-            {{form.description}}<br>
-            {{form.equipment_connect}}<br>   
-            {%for i in form.equipment_connect %}
-            {{i}} {{i.equipment.description}} <br>
-            {%endfor%} -->
-
-            {{form.as_p}}
-            {{forform.equipment_connect}}
-            {{form.locations_connect.locations.all}}
-            {%for i in form.locations_connect.all%}
-            {{address}}
-            {%endfor%}
-
+           <!--  <div>
+                  {{form.channel_name.label}}{{form.channel_name}} <br>
+                  {{form.object_a.label}} {{form.object_a}}<br>
+                  {{form.object_b.label}}{{form.object_b}}<br>
+                  {{form.traffic.label}}{{form.traffic}}<br>
+                  {{form.description.label}}{{form.description}}<br>
+            <br>
            
+            <table id='tblData'>
+            <thead>
+                  <th>Оборудование</th>
+                  <th>Объект</th>
+            </thead>
+            <tbody>
+            <tr>
+           
+            <td> <ul> {%for loc in form.equipment_queryset%}
+                  <li>{{loc.locations_connect}}</li>
+                  {%endfor%}</ul></td>
+            <td> <ul> {%for obj in form.equipment_connect%}
+                  <li>{{obj}}</li>
+                  {%endfor%}</ul></td>
+            </tr>
+            </tbody>
+            </table >-->
+          
+           {{form.as_table}}
             
             
 </div>
@@ -49,6 +57,7 @@
         <span>{{errorss}}</span>
         <button type="submit"> Создать </button>
     </div>
+
     </form>
    
 {% endblock %} 
