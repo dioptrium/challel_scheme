@@ -8,13 +8,18 @@ class LocationForm(forms.ModelForm):
     class Meta:
         model=Locations
         fields = ['location','address']
+        widgets = {
+           'location': forms.TextInput(attrs={'size':100}),
+           'address': forms.TextInput(attrs={'size':100}),}
         
 class EquipmentForm(forms.ModelForm):
     class Meta:
         model=Equipment
         fields = ['equipment','description','locations_connect']
+        widgets = {
+           'description': forms.TextInput(attrs={'size':80}),}
 
-EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=5)
+EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=15)
 
 
 

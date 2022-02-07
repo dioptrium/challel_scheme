@@ -57,7 +57,7 @@ class CreateLocationView(CreateView):
         for eq in equipment_1:
             eq.locations_connect = self.object
             eq.save()
-            return redirect(reverse('location:location_list'))
+        return redirect(reverse('location:location_list'))
         
     def form_invalid(self, form, equiment_formset):
         return self.render_to_response(
