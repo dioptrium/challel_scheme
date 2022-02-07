@@ -10,5 +10,6 @@ urlpatterns = [
     path('create_channel', permission_required('scheme.add_channel')(views.CreateChannelView), name='url_create_channel'),
     path('create_equipment', permission_required('scheme.add_equipment')(views.CreateEquipmentView), name='url_create_equipment'),
     path('create_location', permission_required('scheme.add_location')(views.CreateLocationView.as_view()), name='url_create_location'),
-    
+    path('<int:pk>/update', permission_required('scheme.change_location')(views.UpdateLocationView.as_view()), name= 'update_location'),
+    path('<int:pk>/delete', permission_required('scheme.delete_income')(views.DeleteLocationView.as_view()), name='delete_location'),
 ]

@@ -1,5 +1,7 @@
 
+from pyexpat import model
 from urllib import request
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Channels, Equipment, Locations
 from django.views.generic import ListView, DeleteView, UpdateView, DetailView, CreateView
@@ -35,7 +37,6 @@ class CreateLocationView(CreateView):
     
     def get_context_data(self, **kwargs):
         context = super(CreateLocationView, self).get_context_data(**kwargs)
-        
         context['equipment_formset'] = EquipmentInlineFormset()
         return context
     
@@ -65,11 +66,41 @@ class CreateLocationView(CreateView):
         )
             
 
+class UpdateLocationView(UpdateView):
+  model = Locations
+  form_class = LocationForm
+  template_name = 'scheme/update_location.html'
 
+  def get(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    form_class = self.get_form_class()
+    form = self.get_form(form_class)
+    equipment_formset = EquipmentInlineFormset(instance = self.object)
+    return self.render_to_response(self.get_context_data(form = form, equipment_formset = equipment_formset))
 
+  def post(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    form_class = self.get_form_class()
+    form = self.get_form(form_class)
+    equipment_formset = EquipmentInlineFormset(self.request.POST, instance=self.object)
+    if (form.is_valid() and equipment_formset.is_valid()):
+      return self.form_valid(form, equipment_formset)
+    return self.form_invalid(form, equipment_formset)
 
+  def form_valid(self, form, equipment_formset):
+    self.object = form.save()
+    equipment_formset.instance = self.object
+    equipment_formset.save()
+    return HttpResponseRedirect(self.get_success_url())
 
-
+  def form_invalid(self, form, equipment_formset):
+    return self.render_to_response(self.get_context_data(form=form, equipment_formset=equipment_formset))
+   
+   
+class DeleteLocationView(DeleteView):
+    model = Locations
+    success_url = '/scheme'
+    template_name = 'scheme/delete_location.html'
 
 
 
@@ -86,7 +117,6 @@ def CreateChannelView(request):
     form=ChannelForm()
     context = {'form':form, 'error':error, 'locations':locations}
     return render (request, 'scheme/create_channel.html', context)
-
 
 def CreateEquipmentView(request):
     error=''

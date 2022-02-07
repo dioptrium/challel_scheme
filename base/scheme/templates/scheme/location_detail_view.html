@@ -4,23 +4,23 @@
 
 {% block content %}
 
-    <table id='tblData'>     
-        <thead>
-            <th>Название объекта</th>
-            <th>Адрес</th>
-            <th>Оборудование </th>
-        </thead>
-        <tbody>
-        <tr>
-            <td>{{location_detail.location}}</td>
-            <td>{{location_detail.address}}</td>
-           <td>{%for i in location_detail.locationcon.all%}
-               {{i.equipment}} <br>
-               {%endfor%}
-           </td>
-        </tr>
-      
-        </tbody>
-    </table>
-
+       
+        <div class="container mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{location_detail.location}}</h4>
+                        <h6>Адрес объекта: {{location_detail.address}}</h6>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="text-primary">Оборудование</h5>
+                        {%for i in location_detail.locationcon.all%}
+                         Оборудование: {{i.equipment}} <br>
+                         {% endfor %}
+                    </div>
+                </div>
+                <div>
+                    <a href="{% url 'update_location' location_detail.id %}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Изменить</a>
+                    <a href="{% url 'delete_location' location_detail.id %}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Удалить</a>
+                </div>
+        </div>
 {% endblock%} 

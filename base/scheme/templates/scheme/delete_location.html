@@ -1,0 +1,16 @@
+{% extends 'main/index.html' %}
+
+{% block title %} {{location_detail.location}} {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <form method="POST">
+        {% csrf_token %} <br>
+    <div class= 'text-center'>
+        <button type="submit" class="btn btn-danger btn-sm active ">Удалить объект</button>
+    </div>
+    </form>
+
+
+{% endblock%} 

@@ -17,7 +17,8 @@ class EquipmentForm(forms.ModelForm):
         model=Equipment
         fields = ['equipment','description','locations_connect']
         widgets = {
-           'description': forms.TextInput(attrs={'size':80}),}
+           'equipment': forms.TextInput(attrs={'size':60}),
+           'description': forms.TextInput(attrs={'size':60}),}
 
 EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=15)
 
