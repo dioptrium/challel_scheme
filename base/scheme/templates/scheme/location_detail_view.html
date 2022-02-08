@@ -14,13 +14,28 @@
                     <div class="card-body">
                         <h5 class="text-primary">Оборудование</h5>
                         {%for i in location_detail.locationcon.all%}
-                         Оборудование: {{i.equipment}} <br>
+
+                        <div lass="container mt-4">
+                            <div class="card-header">
+                                <h4>{{i.equipment}}</h4>
+                                <h4>{{i.description}}</h4>
+                                <h4>{{i.equipmentcon.all}}</h4>
+                                <h4>{{i.equipment_connect}}</h4>
+                                {{sas=i.equipmentcon.all}}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="text-primary">Оборудование</h5>
+                                {%for channel in sas%}
+                                {{ channel.channel_name}} {{ channel.description}}
+                                {% endfor %}
+                            </div>
                          {% endfor %}
                     </div>
                 </div>
+                <br>
                 <div>
-                    <a href="{% url 'update_location' location_detail.id %}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Изменить</a>
-                    <a href="{% url 'delete_location' location_detail.id %}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Удалить</a>
+                    <a href="{% url 'update_location' location_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+                    <a href="{% url 'delete_location' location_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>
                 </div>
         </div>
 {% endblock%} 
