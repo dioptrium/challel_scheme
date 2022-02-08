@@ -1,41 +1,42 @@
 {% extends 'main/index.html' %}
 
-{% block title %} {{location_detail.location}} {% endblock %}
+{% block title %} {{location_detail.id}} {% endblock %}
 
 {% block content %}
+<!--<div>
+    <h4>{{location_detail.location}}</h4> 
+    <h6>Адрес объекта: {{location_detail.address}}</h6>
+</div>     
+<br> 
+<div>
+{%for loc in location_detail.locationcon.all%}
+<div class="list-group col-4">
+    <a href="#" class="list-group-item list-group-item-action active">{{loc.equipment}}</a>
+    {%for channel in loc.equipmentcon.all%}
+    <a href="#" class="list-group-item list-group-item-action"> {{ channel.channel_name}} {{ channel.description}} </a>
+    {% endfor %}
+</div>
+<br>
+{% endfor %} --> 
 
-       
-        <div class="container mt-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>{{location_detail.location}}</h4>
-                        <h6>Адрес объекта: {{location_detail.address}}</h6>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="text-primary">Оборудование</h5>
-                        {%for i in location_detail.locationcon.all%}
 
-                        <div lass="container mt-4">
-                            <div class="card-header">
-                                <h4>{{i.equipment}}</h4>
-                                <h4>{{i.description}}</h4>
-                                <h4>{{i.equipmentcon.all}}</h4>
-                                <h4>{{i.equipment_connect}}</h4>
-                                {{sas=i.equipmentcon.all}}
-                            </div>
-                            <div class="card-body">
-                                <h5 class="text-primary">Оборудование</h5>
-                                {%for channel in sas%}
-                                {{ channel.channel_name}} {{ channel.description}}
-                                {% endfor %}
-                            </div>
-                         {% endfor %}
-                    </div>
-                </div>
-                <br>
-                <div>
-                    <a href="{% url 'update_location' location_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
-                    <a href="{% url 'delete_location' location_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>
-                </div>
-        </div>
-{% endblock%} 
+<ul>
+    {%for loc in location_detail.locationcon.all%}
+        <li class="text-primary">{{loc.equipment}}
+            <ul>
+                {%for channel in loc.equipmentcon.all%}
+                <li class="text-dark">{{ channel.channel_name}} {{ channel.description}}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+<br>
+</div>
+<div>
+    <a href="{% url 'update_location' location_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+    <a href="{% url 'delete_location' location_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>
+</div>                    
+{% endblock%}
+                      
+ 
