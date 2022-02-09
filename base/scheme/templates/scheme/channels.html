@@ -19,7 +19,7 @@
             <td>{{i.object_a}}</td>
             <td>{{i.object_b}}</td>
             <td>{% for inc in i.equipment_connect.all%}
-                   {{inc.locations_connect.location }} - {{inc}} <br>
+                   {{inc.locations_connect.location }}, 
                 {%endfor%}
             </td>
             <td>{{i.traffic}}</td>

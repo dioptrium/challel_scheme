@@ -8,35 +8,87 @@
     <form method='POST'>
     {% csrf_token %}
     
-           <!--  <div>
-                  {{form.channel_name.label}}{{form.channel_name}} <br>
-                  {{form.object_a.label}} {{form.object_a}}<br>
-                  {{form.object_b.label}}{{form.object_b}}<br>
-                  {{form.traffic.label}}{{form.traffic}}<br>
-                  {{form.description.label}}{{form.description}}<br>
-            <br>
-           
-            <table id='tblData'>
-            <thead>
-                  <th>Оборудование</th>
-                  <th>Объект</th>
-            </thead>
-            <tbody>
-            <tr>
-           
-            <td> <ul> {%for loc in form.equipment_queryset%}
-                  <li>{{loc.locations_connect}}</li>
-                  {%endfor%}</ul></td>
-            <td> <ul> {%for obj in form.equipment_connect%}
-                  <li>{{obj}}</li>
-                  {%endfor%}</ul></td>
-            </tr>
-            </tbody>
-            </table >-->
-          
-           {{form.as_table}}
+    <div class="card">
+          <div class="card-header">
+                  <table>
+                  <tr>
+                        <td>{{form.channel_name.label}}: </td>
+                        <td>{{form.channel_name}}</td> 
+                  </tr>
+                  <tr>
+                        <td>{{form.object_a.label}}:</td>
+                        <td>{{form.object_a}}
+                  </tr>
+                  <tr>
+                        <td>{{form.object_b.label}}</td>
+                        <td>{{form.object_b}}</td>
+                  </tr>
+                  <tr>
+                        <td>{{form.traffic.label}}</td>
+                        <td>{{form.traffic}}</td>
+                  </tr>
+                  <tr>
+                        <td>{{form.description.label}}</td>
+                        <td>{{form.description}}</td>
+                  </tr>
+            </table>
             
-            
+            <span class="badge rounded-pill bg-danger">{{ error }}</span>
+      </div>
+      <div class="card-body">
+                  {{form.equipment_connect}}
+                </div>
+                
+        </div>
+      </div>
+      <span>{{error}}</span>
+      <button type="submit" class="px-5 btn btn-primary "> Создать </button>
+      </div>
+      </form>
+      {% endblock %} 
+
+
+
+
+
+
+
+        
+        <!--  <div>
+               {{form.channel_name.label}}{{form.channel_name}} <br>
+               {{form.object_a.label}} {{form.object_a}}<br>
+               {{form.object_b.label}}{{form.object_b}}<br>
+               {{form.traffic.label}}{{form.traffic}}<br>
+               {{form.description.label}}{{form.description}}<br>
+         <br>
+        
+         <table id='tblData'>
+         <thead>
+               <th>Оборудование</th>
+               <th>Объект</th>
+         </thead>
+         <tbody>
+         <tr>
+        
+         <td> <ul> {%for loc in form.equipment_queryset%}
+               <li>{{loc.locations_connect}}</li>
+               {%endfor%}</ul></td>
+         <td> <ul> {%for obj in form.equipment_connect%}
+               <li>{{obj}}</li>
+               {%endfor%}</ul></td>
+         </tr>
+         </tbody>
+         </table >
+       
+        {{form.as_table}} 
+         
+   
+
+
+
+
+
+
 </div>
     <div> 
         {% if form.errors %}
@@ -53,11 +105,6 @@
               </div>
        {% endfor %}
 {% endif %}
-</div>
-        <span>{{errorss}}</span>
-        <button type="submit"> Создать </button>
-    </div>
+-->
 
-    </form>
-   
-{% endblock %} 
+    

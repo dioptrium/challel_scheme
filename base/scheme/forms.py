@@ -137,8 +137,14 @@ class GroupedCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
 class ChannelForm(forms.ModelForm):
     class Meta:
         model = Channels
-        fields = "__all__"
-
+        fields = ['channel_name', 'object_a', 'object_b','traffic','description','equipment_connect',]
+        widgets = {
+           'channel_name': forms.TextInput(attrs={'size':100}),
+           'object_a': forms.TextInput(attrs={'size':100}),
+           'object_b': forms.TextInput(attrs={'size':100}),
+           'traffic': forms.TextInput(attrs={'size':100}),
+           'description': forms.TextInput(attrs={'size':100}),}
+        
     def __init__(self, *args, **kwargs):
         super(ChannelForm, self).__init__(*args, **kwargs)
         self.fields['equipment_connect'] = GroupedModelMultipleChoiceField(

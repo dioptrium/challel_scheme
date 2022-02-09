@@ -54,7 +54,7 @@ class CreateLocationView(CreateView):
     def form_invalid(self, form, equiment_formset, error):
         return self.render_to_response(
             self.get_context_data(form=form, equiment_formset = equiment_formset, 
-            error = 'Ошибка ввода: не заполнено поле ввода объекта или данный объект не существует')
+            error = 'Ошибка ввода: Объект с данным назвванием уже существует')
             )
             
 
@@ -133,3 +133,8 @@ def CreateEquipmentView(request):
     form=EquipmentForm()
     context = {'form':form, 'error':error}
     return render (request, 'scheme/create_equipment.html', context)
+
+class UpdateChannelView(UpdateView):
+    model = Channels
+    template_name = 'scheme/update_channel.html'
+    form_class = ChannelForm

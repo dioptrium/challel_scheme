@@ -15,7 +15,7 @@ class Channels(models.Model):
         return self.channel_name
 
     def get_absolute_url(self):
-        return f'/channels/{self.id}'
+        return f'/scheme/{self.id}/channel_detail_view'
 
 class Equipment(models.Model):
     equipment = models.CharField(max_length=100, verbose_name='Оборудование')
@@ -39,7 +39,7 @@ class Locations(models.Model):
     def __str__(self):
         return self.location
     def get_absolute_url(self):
-        return f'/locations/{self.id}'
+        return f'/scheme/{self.id}/location_detail_view'
 
 
     

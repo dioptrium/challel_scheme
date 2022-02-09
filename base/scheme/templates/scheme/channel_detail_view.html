@@ -1,9 +1,9 @@
 {% extends 'main/index.html' %}
 
-{% block title %} {{location_detail.id}} {% endblock %}
+{% block title %} Канал {% endblock %}
 
 {% block content %}
-<div>
+<!--<div><div>
     <h4>{{channel_detail.channel_name}}</h4>
     <h4>{{channel_detail.object_a}}</h4>
     <h4>{{channel_detail.object_b}}</h4>
@@ -12,7 +12,7 @@
 </div>
   
 <br> 
-<div>
+
 {%for equip in channel_detail.equipment_connect.all%}
 <div class="list-group col-4">
     <a href="#" class="list-group-item list-group-item-action active">{{equip.equipment}}</a>
@@ -39,7 +39,36 @@
 <br>
 </div>
 <div>
-    <a href="{% url 'update_location' channel_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
-    <a href="{% url 'delete_location' channel_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>
-</div>                    
+    <a href="{% url 'url_update_location' channel_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+    <a href="{% url 'url_delete_location' channel_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>
+</div>     -->               
+
+
+<div class="card">
+    <div class="card-header">
+        <h4>{{channel_detail.channel_name}}</h4>
+        <h6>Прохождение: <b>{{channel_detail.object_a}} - {{channel_detail.object_b}}</b></h6> 
+        <h6>Трафик: <b>{{channel_detail.traffic}}</b></h6> 
+        <h6>Описание: <b>{{channel_detail.description}}</b></h6> 
+        <br>
+    </div>
+    <div class="card-body">
+        <ul>
+            {% for locations_connect in locations_list %}
+                <li><b><h4>{{ locations_connect.grouper }}</h4> </b>
+                    <ul>
+                        {% for equip  in locations_connect.list %}
+                        <li class="text-primary"><h5><a href="#" > {{ equip.equipment }} </h5></a></li>
+                        {% endfor %}
+                        <br>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+        <br>
+    </div>
+</div>
+<div>
+    <a href="{% url 'url_update_channel' channel_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+</div>          
 {% endblock%}

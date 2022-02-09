@@ -1,0 +1,50 @@
+{% extends 'main/index.html' %}
+{% load scheme_tags %}
+{% block title %}Изменение канала{% endblock %}
+{% block content %}
+
+<div>
+  
+    <form method='POST'>
+    {% csrf_token %}
+    
+    <div class="card">
+          <div class="card-header">
+                  <table>
+                  <tr>
+                        <td>{{form.channel_name.label}}: </td>
+                        <td>{{form.channel_name}}</td> 
+                  </tr>
+                  <tr>
+                        <td>{{form.object_a.label}}:</td>
+                        <td>{{form.object_a}}
+                  </tr>
+                  <tr>
+                        <td>{{form.object_b.label}}</td>
+                        <td>{{form.object_b}}</td>
+                  </tr>
+                  <tr>
+                        <td>{{form.traffic.label}}</td>
+                        <td>{{form.traffic}}</td>
+                  </tr>
+                  <tr>
+                        <td>{{form.description.label}}</td>
+                        <td>{{form.description}}</td>
+                  </tr>
+            </table>
+            
+            <span class="badge rounded-pill bg-danger">{{ error }}</span>
+      </div>
+      <div class="card-body">
+                  {{form.equipment_connect}}
+                </div>
+                
+        </div>
+      </div>
+      <span>{{error}}</span>
+      <button type="submit" class="px-5 btn btn-primary "> Изменить </button>
+      </div>
+      </form>
+      {% endblock %} 
+
+
