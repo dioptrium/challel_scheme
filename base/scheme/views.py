@@ -20,17 +20,6 @@ class LocationDetailView(DetailView):
     template_name = 'scheme/location_detail_view.html'
     context_object_name = 'location_detail'
 
-def ChannelsView(request):
-    channels= Channels.objects.all()
-    context_object_name = 'channels'
-    return render (request, 'scheme/channels.html',{'channels': channels})
-
-class ChannelDetailView(DetailView):
-    model = Channels
-    template_name = 'scheme/channel_detail_view.html'
-    context_object_name = 'channel_detail'
-
-
 class CreateLocationView(CreateView):
     form_class = LocationForm
     template_name = 'scheme/create_location.html'
@@ -44,11 +33,12 @@ class CreateLocationView(CreateView):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
+        error=''
         equipment_formset = EquipmentInlineFormset(self.request.POST)
         if form.is_valid() and equipment_formset.is_valid():
             return self.form_valid(form, equipment_formset)
         else:
-            return self.form_invalid(form, equipment_formset)
+            return self.form_invalid(form, equipment_formset, error)
         
     def form_valid(self, form, equipment_formset):
         self.object = form.save(commit=False)
@@ -58,12 +48,14 @@ class CreateLocationView(CreateView):
         for eq in equipment_1:
             eq.locations_connect = self.object
             eq.save()
-        return redirect(reverse('location:location_list'))
+        return redirect('url_locations')
+        #return redirect(reverse('location:location_list'))
         
-    def form_invalid(self, form, equiment_formset):
+    def form_invalid(self, form, equiment_formset, error):
         return self.render_to_response(
-            self.get_context_data(form=form, equiment_formset = equiment_formset)
-        )
+            self.get_context_data(form=form, equiment_formset = equiment_formset, 
+            error = 'Ошибка ввода: не заполнено поле ввода объекта или данный объект не существует')
+            )
             
 
 class UpdateLocationView(UpdateView):
@@ -95,13 +87,24 @@ class UpdateLocationView(UpdateView):
 
   def form_invalid(self, form, equipment_formset):
     return self.render_to_response(self.get_context_data(form=form, equipment_formset=equipment_formset))
-   
-   
+
 class DeleteLocationView(DeleteView):
     model = Locations
     success_url = '/scheme'
     template_name = 'scheme/delete_location.html'
 
+
+
+
+def ChannelsView(request):
+    channels= Channels.objects.all()
+    context_object_name = 'channels'
+    return render (request, 'scheme/channels.html',{'channels': channels})
+
+class ChannelDetailView(DetailView):
+    model = Channels
+    template_name = 'scheme/channel_detail_view.html'
+    context_object_name = 'channel_detail'
 
 
 def CreateChannelView(request):

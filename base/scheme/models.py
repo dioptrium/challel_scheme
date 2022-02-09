@@ -18,7 +18,7 @@ class Channels(models.Model):
         return f'/channels/{self.id}'
 
 class Equipment(models.Model):
-    equipment = models.CharField(max_length=100, verbose_name='Оборудование', blank=True)
+    equipment = models.CharField(max_length=100, verbose_name='Оборудование')
     description = models.CharField(max_length=200, verbose_name='Описание', blank=True)
     locations_connect = models.ForeignKey('Locations', on_delete=models.PROTECT,
                         related_name='locationcon', verbose_name='Прохождение по оборудованию') 
@@ -28,7 +28,7 @@ class Equipment(models.Model):
     def __str__(self):
         return self.equipment
     def _get_absolute_url(self):
-        return f'/channels/{self.id}'
+        return f'/equipment/{self.id}'
 
 class Locations(models.Model):
     location = models.CharField(max_length=100, unique=True, verbose_name='Название объекта')
@@ -39,7 +39,7 @@ class Locations(models.Model):
     def __str__(self):
         return self.location
     def get_absolute_url(self):
-        return f'/channels/{self.id}'
+        return f'/locations/{self.id}'
 
 
     

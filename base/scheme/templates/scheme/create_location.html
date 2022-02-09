@@ -1,23 +1,23 @@
 
 {% extends 'main/index.html' %}
-{% block title %}Создание канала{% endblock %}
+{% block title %}Создание объекта{% endblock %}
 
 
 {% block content %}
 
 
-<div class="container mt-4">
+<div class="container-fluit">
     <form method="post">
         {% csrf_token %}
         <div class="card">
             <div class="card-header">
-                <h4>Создание объекта</h4>
-            </div>
-            <div class="card-body">
-                {{ form.non_form_errors }}
+                {{form.non_form_errors }}
                 {{form.location.label}}: {{form.location}} <br><br>
                 {{form.address.label}}: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{form.address}}
-                <p></p>
+                <br><br>
+                <span class="badge rounded-pill bg-danger">{{ error }}</span>
+            </div>
+            <div class="card-body">
                 <h5 class="text-primary">Добавить оборудование</h5>
                 {{ equipment_formset.non_form_errors }}
                 {{ equipment_formset.management_form }}
@@ -29,11 +29,10 @@
                         <div class="ml-4">{{ form.DELETE }} {{ form.DELETE.label }}</div>
                     {% endif %}--> 
                 </div>
-                {% endfor %}
-            </div>
+                {% endfor %}      
         </div>
-        <div class="mt-3 mb-5">
-            <button type="submit" class="px-5 btn btn-primary">Submit</button>
+        <div class="">
+            <button type="submit" class="px-5 btn btn-primary ">Создать</button>
         </div>
     </form>
 </div>
