@@ -4,20 +4,34 @@
 
 {% block content %}
 
-    
-<!--</div>     
-<br> 
-<div>
-{%for loc in location_detail.locationcon.all%}
-<div class="list-group col-4">
-    <a href="#" class="list-group-item list-group-item-action active">{{loc.equipment}}</a>
-    {%for channel in loc.equipmentcon.all%}
-    <a href="#" class="list-group-item list-group-item-action"> {{ channel.channel_name}} {{ channel.description}} </a>
-    {% endfor %}
-</div>
-<br>
-{% endfor %} --> 
 <div class="card">
+    <div class="card-header">
+        <h4>{{location_detail.location}}</h4> 
+        <h6>Адрес объекта: {{location_detail.address}}</h6>
+    </div>
+        <table id='tblData'>     
+            <thead>
+                <th>Объект</th>
+                <th>Оборудование</th> 
+            </thead>
+            <tbody>
+                {%for loc in location_detail.locationcon.all%}
+            <tr>
+                <td><a href="{% url 'url_equipment_detail_view' loc.id %}" >{{loc.equipment}}</a></td>
+                <td>{%for channel in loc.equipmentcon.all%}<a href="{% url 'url_channel_detail_view' channel.id %}" > {{ channel.channel_name}}</a><br>{% endfor %}</td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <a href="{% url 'url_update_location' location_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+    <!--<a href="{% url 'url_delete_location' location_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>-->
+</div> 
+{% endblock%}
+
+<!--<div class="card">
     <div class="card-header">
         <h4>{{location_detail.location}}</h4> 
         <h6>Адрес объекта: {{location_detail.address}}</h6>
@@ -38,11 +52,4 @@
         </ul>
         <br>
     </div>
-</div>
-<div>
-    <a href="{% url 'url_update_location' location_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
-    <!--<a href="{% url 'url_delete_location' location_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>-->
-</div>                    
-{% endblock%}
-                      
- 
+</div>-->

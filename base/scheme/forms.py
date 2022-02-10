@@ -153,7 +153,7 @@ class ChannelForm(forms.ModelForm):
             widget=forms.CheckboxSelectMultiple(),
             required=False)
         
-"""class ChannelForm(forms.ModelForm):
+'''class ChannelFormCopy(forms.ModelForm):
     #field = forms.CharField(label='Your name', max_length=100)
     class Meta:
         model=Channels
@@ -163,4 +163,5 @@ class ChannelForm(forms.ModelForm):
     
    
     equipment_connect = forms.ModelMultipleChoiceField(queryset=equipment_queryset, widget=forms.CheckboxSelectMultiple)
-    locations_connect = Locations.objects.all()"""
+    locations_connect = Locations.objects.all()'''
+    

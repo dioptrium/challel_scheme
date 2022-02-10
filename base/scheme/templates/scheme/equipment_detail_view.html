@@ -9,22 +9,23 @@
     <div class="card-header">
         <h4>{{equipment.equipment}}</h4>
         <h6>Описание: {{equipment.description}}</h6> 
-        <h6>Описание: {{equipment.locations_connect}}</h6> 
+        <h6>Объект: {{equipment.locations_connect}}</h6> 
         
         <br>
     </div>
-    <div class="card-body">
-        <ul>
-            {% for channel in equipment.equipmentcon.all %}
-                    <ul>
-                        
-                        <li class="text-primary"><h5><a href="{% url 'url_channel_detail_view' channel.id %}" > {{ channel.channel_name }} </h5></a></li>
-                        <br>
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-        <br>
+        <table id='tblData' class="">     
+            <thead>
+                <th>Каналы</th>
+            </thead>
+            <tbody>
+                {% for channel in equipment.equipmentcon.all %}
+                <tr>
+                    <td><a href="{% url 'url_channel_detail_view' channel.id %}" > {{ channel.channel_name }}</a></td>
+                </tr>  
+                {%endfor%}
+            </tbody>
+        </table>
+
     </div>
 </div>
         

@@ -144,3 +144,17 @@ class EquipmentDetailView(DetailView):
     model = Equipment
     template_name = 'scheme/equipment_detail_view.html'
     context_object_name = 'equipment'
+    
+'''def CreateChannelViewCopy(request):
+    equipment = Equipment.objects.all()
+    error=''
+    if request.method=='POST':
+        form= ChannelFormCopy(request.POST)
+        if form.is_valid():
+            channel = form.save()
+            return redirect (channel)
+        else:
+            error = 'Mistake'
+    form=ChannelFormCopy()
+    context = {'form':form, 'error':error, 'equipment':equipment}
+    return render (request, 'scheme/create_channel_copy.html', context)'''
