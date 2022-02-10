@@ -121,6 +121,12 @@ def CreateChannelView(request):
     context = {'form':form, 'error':error, 'locations':locations}
     return render (request, 'scheme/create_channel.html', context)
 
+
+class UpdateChannelView(UpdateView):
+    model = Channels
+    template_name = 'scheme/update_channel.html'
+    form_class = ChannelForm
+
 def CreateEquipmentView(request):
     error=''
     if request.method=='POST':
@@ -134,7 +140,7 @@ def CreateEquipmentView(request):
     context = {'form':form, 'error':error}
     return render (request, 'scheme/create_equipment.html', context)
 
-class UpdateChannelView(UpdateView):
-    model = Channels
-    template_name = 'scheme/update_channel.html'
-    form_class = ChannelForm
+class EquipmentDetailView(DetailView):
+    model = Equipment
+    template_name = 'scheme/equipment_detail_view.html'
+    context_object_name = 'equipment'

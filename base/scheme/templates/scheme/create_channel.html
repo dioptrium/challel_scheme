@@ -31,21 +31,22 @@
                         <td>{{form.description.label}}</td>
                         <td>{{form.description}}</td>
                   </tr>
-            </table>
+                  </table>
             
-            <span class="badge rounded-pill bg-danger">{{ error }}</span>
-      </div>
-      <div class="card-body">
-                  {{form.equipment_connect}}
-                </div>
-                
-        </div>
+                  <span class="badge rounded-pill bg-danger">{{ error }}</span>
+            </div>
+      
+            <div class="card-body">
+                  <div> 
+                        {{form.equipment_connect}}
+                </div>   
+            </div>
       </div>
       <span>{{error}}</span>
       <button type="submit" class="px-5 btn btn-primary "> Создать </button>
-      </div>
-      </form>
-      {% endblock %} 
+</div>
+</form>
+{% endblock %} 
 
 
 
