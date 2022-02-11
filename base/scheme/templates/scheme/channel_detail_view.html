@@ -6,12 +6,16 @@
 
 <div class="card ">
     
-    <div class="card-header">
-        <h4>{{channel_detail.channel_name}}</h4>
-        <h6>Прохождение: <b>{{channel_detail.object_a}} - {{channel_detail.object_b}}</b></h6> 
-        <h6>Трафик: <b>{{channel_detail.traffic}}</b></h6> 
-        <h6>Описание: <b>{{channel_detail.description}}</b></h6> 
-        
+    <div class="card-header row align-items-center">
+        <div class="col-10 text-right">
+            <h4>{{channel_detail.channel_name}}</h4>
+            <h6>Прохождение: <b>{{channel_detail.object_a}} - {{channel_detail.object_b}}</b></h6> 
+            <h6>Трафик: <b>{{channel_detail.traffic}}</b></h6> 
+            <h6>Описание: <b>{{channel_detail.description}}</b></h6> 
+        </div>
+        <div class="col-2 align-items-start">
+            <a href="{% url 'url_update_channel' channel_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+        </div>
     </div>  
 
     <table id='tblData'>     
@@ -29,9 +33,7 @@
         {%endfor%}
         </tbody>
     </table>
-    <div>
-        <a href="{% url 'url_update_channel' channel_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
-    </div>
+    
     
 </div>
 {% endblock%}

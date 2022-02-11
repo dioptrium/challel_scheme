@@ -5,9 +5,14 @@
 {% block content %}
 
 <div class="card">
-    <div class="card-header">
-        <h4>{{location_detail.location}}</h4> 
-        <h6>Адрес объекта: {{location_detail.address}}</h6>
+    <div class="card-header row align-items-center">
+        <div class="col-10 text-right">
+            <h4>{{location_detail.location}}</h4> 
+            <h6>Адрес объекта: {{location_detail.address}}</h6>
+        </div>
+        <div class="col-2 align-items-start">
+            <a href="{% url 'url_update_location' location_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+        </div>
     </div>
         <table id='tblData'>     
             <thead>
@@ -26,7 +31,7 @@
     </div>
 </div>
 <div>
-    <a href="{% url 'url_update_location' location_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+    
     <!--<a href="{% url 'url_delete_location' location_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>-->
 </div> 
 {% endblock%}
@@ -53,3 +58,4 @@
         <br>
     </div>
 </div>-->
+
