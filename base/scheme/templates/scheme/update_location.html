@@ -19,14 +19,13 @@
                 <h5 class="text-primary">Изменить оборудование</h5>
                 {{ equipment_formset.non_form_errors }}
                 {{ equipment_formset.management_form }}
-          {% for eq in equipment_formset %}
-          
-            {{ eq.id}}
-            Оборудование: {{ eq.equipment}}
-            Описание: {{ eq.description }} <br>
-            <p1></p1><br>
-            
-            {% endfor %}
+                
+                {% for eq in equipment_formset %}
+                    {{ eq.id}}
+                    Оборудование: {{ eq.equipment}}
+                    Описание: {{ eq.description }} <br>
+                    <p1></p1><br>
+                {% endfor %}
             </div>
         </div>
         <div class="mt-3 mb-5">

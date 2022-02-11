@@ -5,6 +5,7 @@
 {% block content %}
 
 <div class="card ">
+    
     <div class="card-header">
         <h4>{{channel_detail.channel_name}}</h4>
         <h6>Прохождение: <b>{{channel_detail.object_a}} - {{channel_detail.object_b}}</b></h6> 
@@ -30,7 +31,8 @@
     </table>
     <div>
         <a href="{% url 'url_update_channel' channel_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
-    </div> -->
+    </div>
+    
 </div>
 {% endblock%}
 

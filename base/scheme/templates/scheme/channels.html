@@ -18,8 +18,14 @@
             <td><a href="{% url 'url_channel_detail_view' i.id %}">{{i.channel_name}}</a></td>
             <td>{{i.object_a}}</td>
             <td>{{i.object_b}}</td>
-            <td>{% for inc in i.equipment_connect.all%}
+            <!--<td>{% for inc in i.equipment_connect.all%}
                    {{inc.locations_connect.location }}, 
+                {%endfor%}-->
+            </td>
+            <td>
+            {% regroup i.equipment_connect.all by locations_connect as locations_list %}
+                {% for locations_connect in locations_list %}
+                {{ locations_connect.grouper }},
                 {%endfor%}
             </td>
             <td>{{i.traffic}}</td>
@@ -28,4 +34,5 @@
         {%endfor%}
         </tbody>
     </table>
+    
 {% endblock%} 
