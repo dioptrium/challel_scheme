@@ -5,6 +5,19 @@
 
 {% block content %}
 
+<style>
+.hidden {
+    display: none;
+}
+
+</style>
+
+<script type="text/html" id="item-template">
+    <div id="item-__prefix__">
+        {{ equipment_formset.empty_form }}
+    </div>
+</script>
+
 
 <div class="container-fluit">
     <form method="post">
@@ -27,15 +40,21 @@
                 <h5 class="text-primary">Добавить оборудование</h5>
                 {{ equipment_formset.non_form_errors }}
                 {{ equipment_formset.management_form }}
+            <div id="items-form-container">
                 {% for form in equipment_formset %}
-                <div class="d-flex py-1 inline {{ product_meta_formset.prefix }}">
-                    <div>{{form.equipment.label}}: {{ form.equipment }}</div>&nbsp
-                    <div class="ml-4">{{form.description.label}}: {{ form.description }}</div>
-                   <!---{% if equipment_formset.can_delete %}&nbsp&nbsp
-                        <div class="ml-4">{{ form.DELETE }} {{ form.DELETE.label }}</div>
-                    {% endif %}--> 
-                </div>
-                {% endfor %}      
+                <div class="d-flex py-1 inline {{ product_meta_formset.prefix }}" id="item-{{ forloop.counter0 }}">
+                    <div >{{form.equipment.label}}: {{ form.equipment }}</div>&nbsp
+                    <div >{{form.description.label}}: {{ form.description }}</div>
+                     {% if equipment_formset.can_delete %}&nbsp&nbsp
+                        <div class="ml-4">{{ form.DELETE.label }} {{ form.DELETE }}</div>
+                    {% endif %}
+                </div> 
+            </div><br>
+            {% endfor %}      
+            <a href="#" id="add-item-button" class="btn btn-info add-item">Add Item</a>
+                    
+
+
             </div>
         </div>
             
@@ -44,8 +63,7 @@
 
 {% endblock %} 
 
-
-<div class="card-header row align-items-center">
+<!--<div class="card-header row align-items-center">
     <div class="col-10 text-right">
         <h4>{{channel_detail.channel_name}}</h4>
         <h6>Прохождение: <b>{{channel_detail.object_a}} - {{channel_detail.object_b}}</b></h6> 
@@ -55,4 +73,5 @@
     <div class="col-2 align-items-start">
         <a href="{% url 'url_update_channel' channel_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
     </div>
-</div>  
+</div>  -->
+

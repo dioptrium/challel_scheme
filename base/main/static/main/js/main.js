@@ -158,5 +158,34 @@ function exportTableToExcel(tableID, filename = ''){
 /*$(document).ready(function() {
   var $elFrom = $('td[id="from1"]').value;
   $('td[id="in"]').text($elFrom);
-  });*/
-
+  });
+  
+  const addMoreBtn =  document.getElementById('add-more')
+    addMoreBtn.addEventListener('click', add_new_form)
+    function add_new_form(event) {
+      if (event) {
+          event.preventDefault()
+      }
+      const formCopyTarget = document.getElementById('clone-form-list')
+      const emptyFormEl = document.getElementById('empty-form').cloneNode(true)
+      emptyFormEl.setAttribute('class', 'clone-form')
+      formCopyTarget.append(emptyFormEl)
+    }*/
+  
+    $(document).ready(function() {
+      $('.add-item').click(function(ev) {
+          ev.preventDefault();
+          var count = $('#items-form-container').children().length;
+          var tmplMarkup = $('#item-template').html();
+          var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+          $('div#items-form-container').append(compiledTmpl);
+  
+          // update form count
+          $('#id_item_items-TOTAL_FORMS').attr('value', count+1);
+  
+          // some animate to scroll to view our new form
+          $('html, body').animate({
+                  scrollTop: $("#add-item-button").position().top-200
+              }, 800);
+      });
+  });

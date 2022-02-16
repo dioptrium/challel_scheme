@@ -20,7 +20,7 @@ class EquipmentForm(forms.ModelForm):
            'equipment': forms.TextInput(attrs={'size':60}),
            'description': forms.TextInput(attrs={'size':60}),}
 
-EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=15)
+EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=1)
 
 
 
