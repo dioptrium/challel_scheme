@@ -4,7 +4,7 @@ from urllib import request
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Channels, Equipment, Locations
-from django.views.generic import ListView, DeleteView, UpdateView, DetailView, CreateView
+from django.views.generic import ListView, DeleteView, UpdateView, DetailView, CreateView, TemplateView
 from .forms import *
 from .models import *
 from django.forms import modelformset_factory
@@ -157,4 +157,19 @@ class EquipmentDetailView(DetailView):
             error = 'Mistake'
     form=ChannelFormCopy()
     context = {'form':form, 'error':error, 'equipment':equipment}
-    return render (request, 'scheme/create_channel_copy.html', context)'''
+    return render (request, 'scheme/create_channel_copy.html', context)
+    
+class CreateLocationView(TemplateView):
+    template_name = "scheme/create_location.html"
+    
+    def get(self, *args, **kwargs):
+        formset = EquipmentInlineFormset(queryset=Equipment.objects.none())
+        return self.render_to_response({'equipment_formset':formset})        
+    
+    def post(self,*args,**kwargs):
+        formset = EquipmentInlineFormset(data=self.request.POST)
+        
+        if formset.is_valid():
+            formset.save()
+            return redirect('url_locations')
+        return self.render_to_response({'equipment_formset': formset})'''

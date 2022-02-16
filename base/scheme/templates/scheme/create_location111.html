@@ -5,20 +5,20 @@
 
 {% block content %}
 
-
+<style>
+.hidden {
+    display: none;
+}
 
 </style>
-
-<script type="text/html" id="item-template">
-    <div class="d-flex py-1 inline" id="item-__prefix__">
-        <div >{{equipment_formset.empty_form.equipment.label}}: {{ equipment_formset.empty_form.equipment }}</div>&nbsp
-        <div >{{equipment_formset.empty_form.description.label}}: {{ equipment_formset.empty_form.description }}</div>
-    </div>
+<script>
+   
 </script>
 
 
+
 <div class="container-fluit">
-    <form method="post">
+    <form id="form-container" method="post">
         {% csrf_token %}
         <div class="card">
             <div class="card-header row align-items-center">
@@ -38,24 +38,47 @@
                 <h5 class="text-primary">Добавить оборудование</h5>
                 {{ equipment_formset.non_form_errors }}
                 {{ equipment_formset.management_form }}
-            <div id="items-form-container">
+            <div >
                 {% for form in equipment_formset %}
-                <div class="d-flex py-1 inline {{ product_meta_formset.prefix }}" id="item-{{ forloop.counter0 }}">
+                <div class="bird-form">
                     <div >{{form.equipment.label}}: {{ form.equipment }}</div>&nbsp
                     <div >{{form.description.label}}: {{ form.description }}</div>
                      {% if equipment_formset.can_delete %}&nbsp&nbsp
-                        <div class="ml-4">{{ form.DELETE.label }} {{ form.DELETE }}</div>
+                        <div>{{ form.DELETE.label }} {{ form.DELETE }}</div>
                     {% endif %}
                 </div> 
             </div><br>
             {% endfor %}      
-            <!---<button href="#" id="add-item-button" class="btn btn-info add-item">Add Item</button> -->
-            <button class="btn btn-primary add-item" type="button" id="add-item-button">
-                Добавить строку
-            </button>      
+            <button id="add-form" type="button">Add Another Bird</button>
+                    
+
+
             </div>
-        </div>      
+        </div>
+            
     </form>
+   <script>
+       let birdForm = document.querySelectorAll(".bird-form")
+  let container = document.querySelector("#form-container")
+  let addButton = document.querySelector("#add-form")
+  let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+
+  let formNum = birdForm.length-1
+  addButton.addEventListener('click', addForm)
+
+  function addForm(e){
+      e.preventDefault()
+
+      let newForm = birdForm[0].cloneNode(true)
+      let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+      formNum++
+      newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+      container.insertBefore(newForm, addButton)
+      
+      totalForms.setAttribute('value', `${formNum+1}`)
+  }
+   </script>
 </div>
 
 {% endblock %} 

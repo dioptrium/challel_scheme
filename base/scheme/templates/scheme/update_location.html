@@ -4,6 +4,14 @@
 
 {% block content %}
 
+<script type="text/html" id="item-template">
+    <div class="d-flex py-1 inline" id="item-__prefix__">
+        <div >{{equipment_formset.empty_form.equipment.label}}: {{ equipment_formset.empty_form.equipment }}</div>&nbsp
+        <div >{{equipment_formset.empty_form.description.label}}: {{ equipment_formset.empty_form.description }}</div>
+        <br><br>
+    </div>
+</script>
+
 <div class="container-fluid">
     <form method="post">
         {% csrf_token %}
@@ -17,20 +25,28 @@
                 </div>
         </div>
             <div class="card-body">
-                {{ form.non_form_errors }}
+                {{form.non_form_errors }}
                 {{form.location.label}}: {{form.location}} <br><br>
                 {{form.address.label}}: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{form.address}}
                 <p></p>
                 <h5 class="text-primary">Изменить оборудование</h5>
                 {{ equipment_formset.non_form_errors }}
                 {{ equipment_formset.management_form }}
-                
+                <div id="items-form-container"> 
                 {% for eq in equipment_formset %}
+                <div id="item-{{ forloop.counter0 }}">
                     {{ eq.id}}
                     Оборудование: {{ eq.equipment}}
-                    Описание: {{ eq.description }} <br>
-                    <p1></p1><br>
+                    Описание: {{ eq.description }}
+                     <br><br>
+                    
+                </div>
                 {% endfor %}
+                </div>
+                <br>
+                <button class="btn btn-primary add-item" type="button" id="add-item-button">
+                    Добавить строку
+                </button> 
             </div>
         </div>
         <div class="mt-3 mb-5">

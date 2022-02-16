@@ -181,7 +181,7 @@ function exportTableToExcel(tableID, filename = ''){
           $('div#items-form-container').append(compiledTmpl);
   
           // update form count
-          $('#id_item_items-TOTAL_FORMS').attr('value', count+1);
+          $('#id_locationcon-TOTAL_FORMS').attr('value', count+1);
   
           // some animate to scroll to view our new form
           $('html, body').animate({
@@ -189,3 +189,5 @@ function exportTableToExcel(tableID, filename = ''){
               }, 800);
       });
   });
+
+  
