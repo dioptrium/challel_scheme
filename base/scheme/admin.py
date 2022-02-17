@@ -1,11 +1,14 @@
 from ast import Eq
 from django.contrib import admin
 from django.contrib.admin.options import ModelAdmin
-from scheme.models import Channels, Equipment, Locations
+from scheme.models import Channels, Equipment, Locations, Specifications
 
 
 class EquipmentOnline(admin.TabularInline):
     model = Equipment
+
+class SpecificationsInline(admin.TabularInline):
+    model = Specifications
 
 @admin.register(Locations)
 class LocationsAdmin(ModelAdmin):
@@ -17,10 +20,9 @@ class LocationsAdmin(ModelAdmin):
 
 @admin.register(Equipment)
 class EquipmentAdmin(ModelAdmin):
-    '''list_display = ['equipment','description'] 
-    ordering = ['equipment']
-    search_fields = ['equipment']'''
-    pass
+     inlines = [SpecificationsInline]
+    
+
     
 class Equipment_connectInline(admin.TabularInline):
     model = Channels.equipment_connect.through

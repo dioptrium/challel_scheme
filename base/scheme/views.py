@@ -112,13 +112,19 @@ def CreateChannelView(request):
     error=''
     if request.method=='POST':
         form= ChannelForm(request.POST)
+        form_2 = SpecificationsForm(request.POST)
+        form_3 = EquipmentForm(request.POST)
         if form.is_valid():
             channel = form.save()
+            specifications = form.save()
+            equipment = form.save()
             return redirect (channel)
         else:
             error = 'Mistake'
     form=ChannelForm()
-    context = {'form':form, 'error':error, 'locations':locations}
+    form_2=SpecificationsForm()
+    form_3=EquipmentForm()
+    context = {'form':form, 'form_2':form_2, 'form_3':form_3,'error':error, 'locations':locations}
     return render (request, 'scheme/create_channel.html', context)
 
 

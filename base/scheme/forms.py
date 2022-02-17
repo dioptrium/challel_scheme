@@ -1,6 +1,6 @@
 from ast import Eq
 from django import forms
-from .models import Channels, Equipment, Locations
+from .models import Channels, Equipment, Locations, Specifications
 from django.forms import formset_factory, inlineformset_factory
 
 
@@ -19,13 +19,18 @@ class EquipmentForm(forms.ModelForm):
         widgets = {
            'equipment': forms.TextInput(attrs={'size':60}),
            'description': forms.TextInput(attrs={'size':60}),}
+    equipment_queryset = Equipment.objects.order_by('locations_connect')
+    equipment_connect= forms.ModelMultipleChoiceField(queryset=equipment_queryset, widget=forms.CheckboxSelectMultiple)
+
+
+
 
 EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=1)
 
 
 
 
-'''Переопределение ModelMultipleChoiceField'''
+'''Переопределение ModelMultipleChoiceField
 
 from itertools import groupby
 from django.forms.models import ModelChoiceIterator, ModelMultipleChoiceField
@@ -151,9 +156,9 @@ class ChannelForm(forms.ModelForm):
             group_by_field='locations_connect',
             queryset=Equipment.objects.all(),
             widget=forms.CheckboxSelectMultiple(),
-            required=False)
+            required=False)'''
         
-'''class ChannelFormCopy(forms.ModelForm):
+class ChannelForm(forms.ModelForm):
     #field = forms.CharField(label='Your name', max_length=100)
     class Meta:
         model=Channels
@@ -162,6 +167,10 @@ class ChannelForm(forms.ModelForm):
     equipment_queryset = Equipment.objects.order_by('-locations_connect')
     
    
-    equipment_connect = forms.ModelMultipleChoiceField(queryset=equipment_queryset, widget=forms.CheckboxSelectMultiple)
-    locations_connect = Locations.objects.all()'''
+    equipment_connect= forms.ModelMultipleChoiceField(queryset=equipment_queryset, widget=forms.CheckboxSelectMultiple)
+    locations_connect_check = Locations.objects.all()
     
+class SpecificationsForm(forms.ModelForm):
+    class Meta:
+        model=Specifications
+        fields =['port', 'timeslot']

@@ -41,5 +41,10 @@ class Locations(models.Model):
     def get_absolute_url(self):
         return f'/scheme/{self.id}/location_detail_view'
 
+class Specifications(models.Model):
+    specification = models.ForeignKey('Equipment',on_delete=models.PROTECT, related_name='equip_specif', blank=True, verbose_name='Спецификация')
+    port = models.CharField(max_length=100, verbose_name='Порт')
+    timeslot = models.CharField(max_length=100, verbose_name='Таймслот')
+    
 
     

@@ -8,7 +8,7 @@
 <form method='POST'>
 {% csrf_token %}
     
-    <div class="card">
+    <!--<div class="card">
           <div class="card-header row align-items-center">
                 <div class="col-10 text-right">
                   <table>
@@ -43,12 +43,30 @@
       
             <div class="card-body">
                   <div> 
-                        {{form.equipment_connect}}
+                        {{form.equipment_connect}}{
                 </div>   
             </div>
       </div>
 
-      <span>{{error}}</span>
+      <span>{{error}}</span>-->
+
+      {{form.channel_name.label}}{{form.channel_name}} <br>
+      {{form.object_a.label}} {{form.object_a}}<br>
+      {{form.object_b.label}}{{form.object_b}}<br>
+      {{form.traffic.label}}{{form.traffic}}<br>
+      {{form.description.label}}{{form.description}}<br>
+sdhfjsdgfsdgfj
+
+      {{form_2.as_p}}
+
+    
+sdfsdkfksdjhfkjsdhsdkj
+ {%for i in form_3.locations_connect%}
+{{i}}{{form_3.equipment_connect}}
+{%endfor%}
+
+            <button type="submit" class="px-5 btn btn-primary"> Создать </button>
+     
 </form>
 </div>
 {% endblock %} 
@@ -56,7 +74,6 @@
 
 
         
-        <!--  <div>
                {{form.channel_name.label}}{{form.channel_name}} <br>
                {{form.object_a.label}} {{form.object_a}}<br>
                {{form.object_b.label}}{{form.object_b}}<br>
@@ -107,6 +124,5 @@
               </div>
        {% endfor %}
 {% endif %}
--->
 
     
