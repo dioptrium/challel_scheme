@@ -8,7 +8,7 @@
 <form method='POST'>
 {% csrf_token %}
     
-  <!--  <div class="card">
+  <div class="card">
           <div class="card-header row align-items-center">
                 <div class="col-10 text-right">
                   <table>
@@ -43,50 +43,12 @@
       
             <div class="card-body">
                   <div> 
-                        {{form.equipment_connect}}{
+                        {{form.equipment_connect}}
                 </div>   
             </div>
       </div>
 
-      <span>{{error}}</span>-->
- ____________________
-   {{form.equipment_connect}}
-   {{form.equipment_connect.locations}}
-   __
-   {{form.as_p}}
-   =================
-   {{form.equipment_connect.}}
-
-   ++++++++++++++++++++++++++++
-   <div class="btn-group" data-toggle="buttons"> 
-   {% for checkbox in form.equipment_connect %}
-    <label class="btn btn-primary">
-    {{ checkbox.tag }} {{ checkbox.choice_label }}
-</label>
-{% endfor %}
-</div>
-   ___2
-{%regroup form.equipment_connect by locations_connect as locations_list%}
-<ul>
-      {%for loc in locations_list%}
-            <li>{{loc.grouper}}
-                  <ul>
-                   {%for eq in locations.list%}
-                  <li>{{eq}}</li>
-                   {%endfor%}
-                  </ul>
-            </li>
-      {%endfor%}
-</ul>
-   ___3
-   {%for i in form.equipment_queryset%}
-    {{i.locations_connect}}<br>
-   {%endfor%}
-   ____4
-   {%for i in form.equipment_connect%}
-   {{i}}<br> {{i.locations_connect}}<br>
-   {%endfor%}
-
+      <span>{{error}}</span>
 </form>
 </div>
 
@@ -94,55 +56,5 @@
 
 
         
-               {{form.channel_name.label}}{{form.channel_name}} <br>
-               {{form.object_a.label}} {{form.object_a}}<br>
-               {{form.object_b.label}}{{form.object_b}}<br>
-               {{form.traffic.label}}{{form.traffic}}<br>
-               {{form.description.label}}{{form.description}}<br>
-         <br>
-        
-         <table id='tblData'>
-         <thead>
-               <th>Оборудование</th>
-               <th>Объект</th>
-         </thead>
-         <tbody>
-         <tr>
-        
-         <td> <ul> {%for loc in form.equipment_queryset%}
-               <li>{{loc.locations_connect}}</li>
-               {%endfor%}</ul></td>
-         <td> <ul> {%for obj in form.equipment_connect%}
-               <li>{{obj}}</li>
-               {%endfor%}</ul></td>
-         </tr>
-         </tbody>
-         </table >
-       
-        {{form.as_table}} 
-         
-   
-
-
-
-
-
-
-</div>
-    <div> 
-        {% if form.errors %}
-       {% for field in form %}
-              {% for error in field.errors %}
-                    <div class="alert alert-danger">
-                          <strong>{{ error }}</strong>
-                    </div>
-              {% endfor %}
-       {% endfor %}
-       {% for error in form.non_field_errors %}
-              <div class="alert alert-danger">
-                    <strong>{{ error }}</strong>
-              </div>
-       {% endfor %}
-{% endif %}
 
     

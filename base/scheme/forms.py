@@ -21,12 +21,16 @@ class EquipmentForm(forms.ModelForm):
            'equipment': forms.TextInput(attrs={'size':60}),
            'description': forms.TextInput(attrs={'size':60}),}
     
+class SpecificationsForm(forms.ModelForm):
+    class Meta:
+        model=Specifications
+        fields =['port', 'timeslot']
 
 
 EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=1)
+SpecificationInlineFormset = inlineformset_factory(Equipment,Specifications, form=SpecificationsForm, extra=1)
 
-
-'''Переопределение ModelMultipleChoiceField
+'''Переопределение ModelMultipleChoiceField'''
 
 from itertools import groupby
 from django.forms.models import ModelChoiceIterator, ModelMultipleChoiceField
@@ -152,9 +156,9 @@ class ChannelForm(forms.ModelForm):
             group_by_field='locations_connect',
             queryset=Equipment.objects.all(),
             widget=forms.CheckboxSelectMultiple(),
-            required=False)'''
+            required=False)
 
-class CustomSelectMultiple(ModelMultipleChoiceField):
+'''class CustomSelectMultiple(ModelMultipleChoiceField):
     def label_from_instance(self, obj):
         return "%s - %s" %(obj.equipment, obj.locations_connect)
         # return "%s" %(obj.name)
@@ -167,12 +171,6 @@ class ChannelForm(forms.ModelForm):
     locations_connect_check = Locations.objects.all()
     class Meta:
         model=Channels
-        fields =['channel_name', 'object_a', 'object_b','traffic','description','equipment_connect',]
+        fields =['channel_name', 'object_a', 'object_b','traffic','description','equipment_connect',]'''
+    
 
-    
-   
-    
-class SpecificationsForm(forms.ModelForm):
-    class Meta:
-        model=Specifications
-        fields =['port', 'timeslot']

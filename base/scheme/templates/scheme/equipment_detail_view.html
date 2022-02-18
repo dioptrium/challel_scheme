@@ -6,21 +6,28 @@
 
 
 <div class="card">
-    <div class="card-header">
+    <div class="card-header row align-items-center">
+        <div class="col-10 text-right">
         <h4>{{equipment.equipment}}</h4>
         <h6>Описание: {{equipment.description}}</h6> 
         <h6>Объект: {{equipment.locations_connect}}</h6> 
-        
+        </div>
+    <div class="col-2 align-items-start">
+        <a href="{% url 'url_update_equipment' equipment.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
+    </div>
         <br>
     </div>
         <table id='tblData' class="">     
             <thead>
                 <th>Каналы</th>
+                <th>Порт/Таймслот</th>
             </thead>
             <tbody>
                 {% for channel in equipment.equipmentcon.all %}
                 <tr>
                     <td><a href="{% url 'url_channel_detail_view' channel.id %}" > {{ channel.channel_name }}</a></td>
+                    <td>{{ channel.channelcon.port}} / {{ channel.channelcon.timeslot}}</td>
+
                 </tr>  
                 {%endfor%}
             </tbody>

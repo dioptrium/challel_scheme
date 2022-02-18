@@ -14,4 +14,5 @@ urlpatterns = [
     path('<int:pk>/delete_location', permission_required('scheme.delete_income')(views.DeleteLocationView.as_view()), name='url_delete_location'),
     path('<int:pk>/update_channel', permission_required('scheme.change_сhannel')(views.UpdateChannelView.as_view()), name= 'url_update_channel'),
     path('<int:pk>/equipment_detail_view', permission_required('scheme.view_equipmentdetailview')(views.EquipmentDetailView.as_view()), name='url_equipment_detail_view'),
+    path('<int:pk>/update_equipment', permission_required('scheme.change_equipment')(views.UpdateEquipmentView.as_view()), name= 'url_update_equipment'),
 ]

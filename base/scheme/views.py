@@ -88,6 +88,37 @@ class UpdateLocationView(UpdateView):
   def form_invalid(self, form, equipment_formset):
     return self.render_to_response(self.get_context_data(form=form, equipment_formset=equipment_formset))
 
+class UpdateEquipmentView(UpdateView):
+  model = Equipment
+  form_class = EquipmentForm
+  template_name = 'scheme/update_equipment.html'
+
+  def get(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    form_class = self.get_form_class()
+    form = self.get_form(form_class)
+    specifications_formset = SpecificationInlineFormset(instance = self.object)
+    return self.render_to_response(self.get_context_data(form = form, specifications_formset = specifications_formset))
+
+  def post(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    form_class = self.get_form_class()
+    form = self.get_form(form_class)
+    specifications_formset = SpecificationInlineFormset(self.request.POST, instance=self.object)
+    if (form.is_valid() and specifications_formset.is_valid()):
+      return self.form_valid(form, specifications_formset)
+    return self.form_invalid(form, specifications_formset)
+
+  def form_valid(self, form, specifications_formset):
+    self.object = form.save()
+    specifications_formset.instance = self.object
+    specifications_formset.save()
+    return HttpResponseRedirect(self.get_success_url())
+
+  def form_invalid(self, form, specifications_formset):
+    return self.render_to_response(self.get_context_data(form=form, specifications_formset=specifications_formset))
+
+
 class DeleteLocationView(DeleteView):
     model = Locations
     success_url = '/scheme'

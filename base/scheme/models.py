@@ -42,9 +42,17 @@ class Locations(models.Model):
         return f'/scheme/{self.id}/location_detail_view'
 
 class Specifications(models.Model):
-    specification = models.ForeignKey('Equipment',on_delete=models.PROTECT, related_name='equip_specif', blank=True, verbose_name='Спецификация')
+    specification = models.ForeignKey('Equipment',on_delete=models.PROTECT, related_name='specificationcon', blank=True, verbose_name='Спецификация')
+    channel_connect = models.ForeignKey('Channels',on_delete=models.PROTECT, related_name='channelcon', null=True, verbose_name='Канал')
     port = models.CharField(max_length=100, verbose_name='Порт')
     timeslot = models.CharField(max_length=100, verbose_name='Таймслот')
+    class Meta:
+        verbose_name = 'Состав оборудования'
+        verbose_name_plural = 'Состав оборудования'
+    def __str__(self):
+        return self.specification
+    def _get_absolute_url(self):
+        return f'/equipment/{self.id}'
     
 
     

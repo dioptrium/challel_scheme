@@ -171,8 +171,9 @@ function exportTableToExcel(tableID, filename = ''){
       emptyFormEl.setAttribute('class', 'clone-form')
       formCopyTarget.append(emptyFormEl)
     }*/
-  
-    $(document).ready(function() {
+  /*Добавление строки оборудования и спейификации*/
+    
+  $(document).ready(function() {
       $('.add-item').click(function(ev) {
           ev.preventDefault();
           var count = $('#items-form-container').children().length;
@@ -182,6 +183,7 @@ function exportTableToExcel(tableID, filename = ''){
   
           // update form count
           $('#id_locationcon-TOTAL_FORMS').attr('value', count+1);
+          $('#id_specificationcon-TOTAL_FORMS').attr('value', count+1);
   
           // some animate to scroll to view our new form
           $('html, body').animate({
