@@ -21,7 +21,7 @@ class Equipment(models.Model):
     equipment = models.CharField(max_length=100, verbose_name='Оборудование')
     description = models.CharField(max_length=200, verbose_name='Описание', blank=True)
     locations_connect = models.ForeignKey('Locations', on_delete=models.PROTECT,
-                        related_name='locationcon', verbose_name='Прохождение по оборудованию') 
+                        related_name='locationcon', verbose_name='Месторасположение') 
     class Meta:
         verbose_name = 'Оборудование'
         verbose_name_plural = 'Оборудование'

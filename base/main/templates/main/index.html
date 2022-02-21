@@ -33,23 +33,18 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'url_locations' %}">Объекты</a>
-          </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'url_create_channel' %}">Создание канала</a>
+            <a class="nav-link" href="{% url 'url_equipment' %}">Оборудование</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'url_create_location' %}">Создание объекта</a>
-          </li>
-          <!--<li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Menu 4
+              Администрирование
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="{% url 'url_create_location' %}">Создание объекта</a></li>
+              <li><a class="dropdown-item" href="{% url 'url_create_channel' %}">Создание канала</a></li>
             </ul>
-          </li>-->
+          </li>
         </ul>
       </div>
     </div>

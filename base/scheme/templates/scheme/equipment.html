@@ -1,0 +1,23 @@
+{% extends 'main/index.html' %}
+
+{% block title %} Объекты {% endblock %}
+{% block content %}
+
+    <table id='tblData'>     
+        <thead>
+            <th>Название объекта</th>
+            <th>Расположение</th>
+            <th>Описание</th>
+        </thead>
+        <tbody>
+        {% for i in equipment %}
+        <tr>
+            <td><a href="{% url 'url_equipment_detail_view' i.id %}">{{i.equipment}}</a></td>
+            <td>{{i.locations_connect}}</td>
+            <td>{{i.description}}</td>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+
+{% endblock%} 

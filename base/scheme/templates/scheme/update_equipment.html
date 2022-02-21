@@ -8,7 +8,7 @@
     <div class="d-flex py-1 inline" id="item-__prefix__">
         <div >{{specifications_formset.empty_form.port.label}}: {{ specifications_formset.empty_form.port }}</div>&nbsp
         <div >{{specifications_formset.empty_form.timeslot.label}}: {{ specifications_formset.empty_form.timeslot }}</div>
-        <div >{{specifications_formset.empty_form.channel_connect.label}}: {{ specifications_formset.empty_form.channel_connect }}</div>
+        <div >{{specifications_formset.empty_form.channel_connect.label}}: {{ specifications_formset.empty_form.channel_connect}}</div>
         <br><br>
     </div>
 </script>
@@ -26,11 +26,10 @@
                 </div>
         </div>
             <div class="card-body">
-      
                 {{form.non_form_errors }}
                 {{form.equipment.label}}: {{form.equipment}} <br><br>
-                {{form.description.label}}: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{form.description}}
-                {{form.locations_connect.label}}: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{form.locations_connect.all}
+                {{form.description.label}}: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{form.description}}<br><br>
+                {{form.locations_connect.label}}: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{form.locations_connect}}
                 <p></p>
                 <h5 class="text-primary">Изменить спецификацию</h5>
                 {{ specifications_formset.non_form_errors }}
@@ -40,10 +39,10 @@
                 <div id="item-{{ forloop.counter0 }}">
                     {{ spec.id}}
                   
-                    {{ spec.port}}
+                    Порт: {{ spec.port}}
                     Таймслот: {{ spec.timeslot }}
                     Канал: {{ spec.channel_connect }}
-                    Канал: {{ spec.specification }}
+                    Удаление: {{ spec.DELETE }}
                      <br><br>
                     
                 </div>

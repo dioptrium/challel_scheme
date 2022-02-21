@@ -15,6 +15,13 @@ def LocationsView(request):
     context_object_name = 'locations'
     return render (request, 'scheme/locations.html',{'locations': locations})
 
+def EquipmentView(request):
+    equipment = Equipment.objects.all()
+    context_object_name = 'equipment'
+    return render (request, 'scheme/equipment.html',{'equipment': equipment})
+
+
+
 class LocationDetailView(DetailView):
     model = Locations
     template_name = 'scheme/location_detail_view.html'
