@@ -180,16 +180,16 @@ function exportTableToExcel(tableID, filename = ''){
           var tmplMarkup = $('#item-template').html();
           var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
           $('div#items-form-container').append(compiledTmpl);
-  
+          
           // update form count
           $('#id_locationcon-TOTAL_FORMS').attr('value', count+1);
           $('#id_specificationcon-TOTAL_FORMS').attr('value', count+1);
-  
           // some animate to scroll to view our new form
           $('html, body').animate({
-                  scrollTop: $("#add-item-button").position().top-200
-              }, 800);
+            scrollTop: $("#add-item-button").position().top-200
+          }, 800);
+        });
       });
-  });
-
-  
+      
+      
+      /**/

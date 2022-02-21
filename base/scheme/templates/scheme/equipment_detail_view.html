@@ -26,9 +26,12 @@
                 {% for channel in equipment.equipmentcon.all %}
                 <tr>
                     <td><a href="{% url 'url_channel_detail_view' channel.id %}" > {{ channel.channel_name }}</a></td>
-                    <td>{{ channel.channelcon.port}} / {{ channel.channelcon.timeslot}}</td>
 
-                </tr>  
+                        <td>  {% for spec in channel.channelcon.all%}
+                            {{ spec.port}} / {{ spec.timeslot}} <br>
+                                 {%endfor%}
+                        </td>
+                </tr> 
                 {%endfor%}
             </tbody>
         </table>

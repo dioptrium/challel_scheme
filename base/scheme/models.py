@@ -27,8 +27,9 @@ class Equipment(models.Model):
         verbose_name_plural = 'Оборудование'
     def __str__(self):
         return self.equipment
-    def _get_absolute_url(self):
-        return f'/equipment/{self.id}'
+    def get_absolute_url(self):
+        return f'/scheme/{self.id}/equipment_detail_view'
+        
 
 class Locations(models.Model):
     location = models.CharField(max_length=100, unique=True, verbose_name='Название объекта')
@@ -51,8 +52,8 @@ class Specifications(models.Model):
         verbose_name_plural = 'Состав оборудования'
     def __str__(self):
         return self.specification
-    def _get_absolute_url(self):
-        return f'/equipment/{self.id}'
+    def get_absolute_url(self):
+        return f'/scheme/{self.id}/specification_detail_view'
     
 
     

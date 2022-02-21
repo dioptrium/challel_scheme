@@ -24,7 +24,7 @@ class EquipmentForm(forms.ModelForm):
 class SpecificationsForm(forms.ModelForm):
     class Meta:
         model=Specifications
-        fields =['port', 'timeslot']
+        fields =['port', 'timeslot','channel_connect','specification']
 
 
 EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=1)
