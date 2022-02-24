@@ -30,32 +30,7 @@
         </table>
     </div>
 </div>
-<div>
-    
-    <!--<a href="{% url 'url_delete_location' location_detail.id %}" class="btn btn-danger active" role="button" aria-pressed="true">Удалить</a>-->
-</div> 
 {% endblock%}
 
-<!--<div class="card">
-    <div class="card-header">
-        <h4>{{location_detail.location}}</h4> 
-        <h6>Адрес объекта: {{location_detail.address}}</h6>
-        <br>
-    </div>
-    <div class="card-body">
-        <ul>
-            {%for loc in location_detail.locationcon.all%}
-                <li class=""><b><h4>{{loc.equipment}}</h4> </b>
-                    <ul>
-                        {%for channel in loc.equipmentcon.all%}
-                        <li class="text-primary"><h5><a href="{% url 'url_channel_detail_view' channel.id %}" > {{ channel.channel_name}} {{ channel.description}}</h5></a></li>
-                        {% endfor %}
-                        <br>
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-        <br>
-    </div>
-</div>-->
+
 

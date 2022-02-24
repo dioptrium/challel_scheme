@@ -5,7 +5,6 @@
 {% block content %}
 
 <div class="card ">
-    
     <div class="card-header row align-items-center">
         <div class="col-10 text-right">
             <h4>{{channel_detail.channel_name}}</h4>
@@ -33,43 +32,9 @@
         {%endfor%}
         </tbody>
     </table>
-    
-    
 </div>
 {% endblock%}
 
 
-
-   <!-- <div class="card ">
-        <div class="card-header">
-            <h4>{{channel_detail.channel_name}}</h4>
-            <h6>Прохождение: <b>{{channel_detail.object_a}} - {{channel_detail.object_b}}</b></h6> 
-            <h6>Трафик: <b>{{channel_detail.traffic}}</b></h6> 
-            <h6>Описание: <b>{{channel_detail.description}}</b></h6> 
-            <br>
-        </div>  
-        <div class="card-body">
-            {% regroup channel_detail.equipment_connect.all by locations_connect as locations_list %}
-            {% for locations_connect in locations_list %}
-            <div class="card border-dark" style="width: 18rem;">
-                <div class="card-header text-white bg-secondary mb-3 ">
-                {{ locations_connect.grouper }}
-                </div>
-                <ul>
-                    {% for equip  in locations_connect.list %}
-                    <li class=""><a href="{% url 'url_equipment_detail_view' equip.id %}" >{{ equip.equipment }}</a></li>
-                {% endfor %}
-                </ul>
-            </div>
-            <br>
-            {% endfor %}
-            <br>
-        </div>
-        <br>
-    </div>
-    <div>
-        <a href="{% url 'url_update_channel' channel_detail.id %}" class="btn btn-primary active" role="button" aria-pressed="true">Изменить</a>
-    </div> -->
-    
     
              

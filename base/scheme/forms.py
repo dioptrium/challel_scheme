@@ -157,20 +157,3 @@ class ChannelForm(forms.ModelForm):
             queryset=Equipment.objects.all(),
             widget=forms.CheckboxSelectMultiple(),
             required=False)
-
-'''class CustomSelectMultiple(ModelMultipleChoiceField):
-    def label_from_instance(self, obj):
-        return "%s - %s" %(obj.equipment, obj.locations_connect)
-        # return "%s" %(obj.name)
-    
-class ChannelForm(forms.ModelForm):
-    
-    equipment_queryset = Equipment.objects.order_by ('locations_connect_id')
-    equipment_connect= CustomSelectMultiple(queryset=equipment_queryset, label="fff", widget=forms.CheckboxSelectMultiple)
-    #equipment_connect= forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=[(c.locations_connect, c.equipment) for c in Equipment.objects.all()],)
-    locations_connect_check = Locations.objects.all()
-    class Meta:
-        model=Channels
-        fields =['channel_name', 'object_a', 'object_b','traffic','description','equipment_connect',]'''
-    
-
