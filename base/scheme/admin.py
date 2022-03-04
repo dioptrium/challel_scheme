@@ -20,12 +20,13 @@ class LocationsAdmin(ModelAdmin):
 
 @admin.register(Equipment)
 class EquipmentAdmin(ModelAdmin):
-     inlines = [SpecificationsInline]
+    inlines = [SpecificationsInline]
+    ordering = ['equipment']
     
-
     
 class Equipment_connectInline(admin.TabularInline):
     model = Channels.equipment_connect.through
+    
 
 @admin.register(Channels)
 class ChannelsAdmin(ModelAdmin):
@@ -36,11 +37,6 @@ class ChannelsAdmin(ModelAdmin):
     inlines = [Equipment_connectInline,]
     exclude = ('equipment_connect',)
 
-#class PersonForm(forms.ModelForm):
- #   extra_field = forms.FileInput()
-  #  class Meta:
-   #     model = Channels
-     #   fields = '__all__'
 
 
 

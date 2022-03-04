@@ -27,15 +27,17 @@
                 <tr>
                     <td><a href="{% url 'url_channel_detail_view' channel.id %}" > {{ channel.channel_name }}</a></td>
 
-                        <td>  {% for spec in channel.channelcon.all%}
-                            {{ spec.port}} / {{ spec.timeslot}} <br>
+                        <td>    {% for spec in channel.channelcon.all%}
+                                {% if spec.specification_id == equipment.id %}
+                                    {{ spec.port}} / {{ spec.timeslot}} <br>
+                                 {%endif%}
                                  {%endfor%}
                         </td>
+                        
                 </tr> 
                 {%endfor%}
             </tbody>
         </table>
-
     </div>
 </div>
         
