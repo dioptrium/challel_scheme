@@ -20,6 +20,11 @@ class Channels(models.Model):
 class Equipment(models.Model):
     equipment = models.CharField(max_length=100, verbose_name='Оборудование')
     description = models.CharField(max_length=200, verbose_name='Описание', blank=True)
+    room = models.CharField(max_length=200, verbose_name='Помещение', blank=True)
+    mount_cab = models.CharField(max_length=200, verbose_name='Монтажный шкаф', blank=True)
+    ip_address = models.CharField(max_length=200, verbose_name='IP адрес', blank=True)
+    inv_number = models.CharField(max_length=200, verbose_name='Инвентарный номер', blank=True)
+    id_number = models.CharField(max_length=200, verbose_name='ID', blank=True)
     locations_connect = models.ForeignKey('Locations', on_delete=models.PROTECT,
                         related_name='locationcon', verbose_name='Месторасположение') 
     class Meta:

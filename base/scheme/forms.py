@@ -16,10 +16,15 @@ class LocationForm(forms.ModelForm):
 class EquipmentForm(forms.ModelForm):
     class Meta:
         model=Equipment
-        fields = ['equipment','description','locations_connect']
+        fields = ['equipment', 'room', 'mount_cab', 'ip_address', 'inv_number', 'id_number','description','locations_connect']
         widgets = {
            'equipment': forms.TextInput(attrs={'size':60}),
-           'description': forms.TextInput(attrs={'size':60}),}
+           'room': forms.TextInput(attrs={'size':20}),
+           'mount_cab': forms.TextInput(attrs={'size':20}),
+           'ip_address': forms.TextInput(attrs={'size':20}),
+           'inv_number': forms.TextInput(attrs={'size':20}),
+           'id_number': forms.TextInput(attrs={'size':20}),
+           'description': forms.TextInput(attrs={'size':20}),}
     
 class SpecificationsForm(forms.ModelForm):
     class Meta:
@@ -154,6 +159,6 @@ class ChannelForm(forms.ModelForm):
         super(ChannelForm, self).__init__(*args, **kwargs)
         self.fields['equipment_connect'] = GroupedModelMultipleChoiceField(
             group_by_field='locations_connect',
-            queryset=Equipment.objects.all(),
+            queryset=Equipment.objects.all().order_by('equipment'),
             widget=forms.CheckboxSelectMultiple(),
             required=False)

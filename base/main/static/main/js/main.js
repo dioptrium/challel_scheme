@@ -177,7 +177,7 @@ function exportTableToExcel(tableID, filename = ''){
       emptyFormEl.setAttribute('class', 'clone-form')
       formCopyTarget.append(emptyFormEl)
     }*/
-  /*Добавление строки оборудования и спейификации*/
+  /*Добавление строки оборудования и спецификации*/
     
   $(document).ready(function() {
       $('.add-item').click(function(ev) {

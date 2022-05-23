@@ -37,11 +37,20 @@
                 {{ equipment_formset.management_form }}
             <div id="items-form-container">
                 {% for form in equipment_formset %}
-                <div class="d-flex py-1 inline {{ product_meta_formset.prefix }}" id="item-{{ forloop.counter0 }}">
-                    <div >{{form.equipment.label}}: {{ form.equipment }}</div>&nbsp
+                <div class="py-1 inline {{ product_meta_formset.prefix }}" id="item-{{ forloop.counter0 }}">
+                    <div class="d-flex">
+                        <div >{{form.equipment.label}}: {{ form.equipment }}</div>&nbsp 
+                        <div >{{form.room.label}}: {{ form.room }}</div>&nbsp 
+                        <div >{{form.mount_cab.label}}: {{ form.mount_cab }}</div>&nbsp
+                    </div> <br>
+                    <div class="d-flex">
+                    <div >{{form.ip_address.label}}: {{ form.ip_address }}</div>&nbsp
+                    <div >{{form.inv_number.label}}: {{ form.inv_number }}</div>&nbsp
+                    <div >{{form.id_number.label}}: {{ form.id_number }}</div>&nbsp
                     <div >{{form.description.label}}: {{ form.description }}</div>
                      {% if equipment_formset.can_delete %}&nbsp&nbsp
                         <div class="ml-4">{{ form.DELETE.label }} {{ form.DELETE }}</div>
+                    </div>
                     {% endif %}
                 </div> 
             </div><br>
