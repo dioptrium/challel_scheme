@@ -35,13 +35,13 @@ $(function() {
       // the widgetOptions.uitheme is no longer required to be set
       theme : "bootstrap",
   
-      widthFixed: true,
+      widthFixed: false,
   
       headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
   
       // widget code contained in the jquery.tablesorter.widgets.js file
       // use the zebra stripe widget if you plan on hiding any rows (filter widget)
-      widgets : [ "uitheme", "filter", "columns", "zebra", "print", "stikyHeaders"/*"columnSelector", "output"*/],
+      widgets : [ "uitheme", "filter", "columns", "zebra", "print", "resizable", "stikyHeaders"/*"columnSelector", "output"*/],
   
       widgetOptions : {
         // using the default zebra striping class name, so it actually isn't included in the theme variable above
@@ -56,6 +56,12 @@ $(function() {
   
         // extra css class name (string or array) added to the filter element (input or select)
         filter_cssFilter: "form-control",
+
+        resizable: true,
+        // These are the default column widths which are used when the table is
+        // initialized or resizing is reset; note that the "Age" column is not
+        // resizable, but the width can still be set to 40px here
+        resizable_widths : [  ],
   
         // set the uitheme widget to use the bootstrap theme class names
         // this is no longer required, if theme is set
@@ -191,5 +197,7 @@ function exportTableToExcel(tableID, filename = ''){
         });
       });
       
+
+
       
       /**/
