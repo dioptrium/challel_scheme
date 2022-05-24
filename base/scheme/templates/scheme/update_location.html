@@ -34,12 +34,22 @@
                 {{ equipment_formset.management_form }}
                 <div id="items-form-container"> 
                 {% for eq in equipment_formset %}
-                <div id="item-{{ forloop.counter0 }}">
-                    {{ eq.id}}
-                    Оборудование: {{ eq.equipment}}
-                    Описание: {{ eq.description }}
-                    Удаление: {{ eq.DELETE }}
+                <div class= "card col-6" id="item-{{ forloop.counter0 }}">
+                    <div>&nbsp</div>
+                <table>
+                    <tbody>
+                    <tr><td>{{ eq.id}}</td></tr>
+                    <tr><td>{{ eq.equipment.label}}:</td><td> {{ eq.equipment}}</td></tr>
+                    <tr><td>{{ eq.room.label}}:</td><td> {{ eq.room}}</td></tr>
+                    <tr><td>{{ eq.mount_cab.label}}:</td><td> {{ eq.mount_cab}}</td></tr>
+                    <tr><td>{{ eq.ip_address.label}}:</td><td> {{ eq.ip_address}}</td></tr>
+                    <tr><td>{{ eq.inv_number.label}}:</td><td>{{ eq.inv_number}}</td></tr>
+                    <tr><td>{{ eq.id_number.label}}:</td><td> {{ eq.id_number}}</td></tr>
+                    <tr><td>{{ eq.description.label}}:</td><td> {{ eq.description }}</td></tr>
+                    <tr><td>Удаление: {{ eq.DELETE }}</td></tr>
                      <br><br>
+                    </tbody>
+                </table>
                 </div>
                 {% endfor %}
                 </div>

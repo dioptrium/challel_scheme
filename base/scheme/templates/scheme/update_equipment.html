@@ -1,6 +1,6 @@
 {% extends 'main/index.html' %}
 
-{% block title %} Изменение объекта {% endblock %}
+{% block title %} Изменение оборудования {% endblock %}
 
 {% block content %}
 
@@ -26,10 +26,20 @@
                 </div>
         </div>
             <div class="card-body">
-                {{form.non_form_errors }}
-                {{form.equipment.label}}: {{form.equipment}} <br><br>
-                {{form.description.label}}: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{form.description}}<br><br>
-                {{form.locations_connect.label}}: {{form.locations_connect}}
+                <table>
+                    <tbody>
+                        <tr><td>{{form.non_form_errors }}</td></tr>
+                        <tr><td>{{form.equipment.label}}:</td><td> {{form.equipment}} </td></tr>
+                        <tr><td>{{form.locations_connect.label}}: </td><td>{{form.locations_connect}}</td></tr>
+                        <tr><td>{{form.room.label}}:</td><td> {{form.room}} </td></tr>
+                        <tr><td>{{form.mount_cab.label}}:</td><td> {{form.mount_cab}} </td></tr>
+                        <tr><td>{{form.ip_address.label}}:</td><td> {{form.ip_address}} </td></tr>
+                        <tr><td>{{form.inv_number.label}}: </td><td>{{form.inv_number}} </td></tr>
+                        <tr><td>{{form.id_number.label}}:</td><td> {{form.id_number}} </td></tr>
+                        <tr><td>{{form.description.label}}:</td><td> {{form.description}}</td></tr>
+                        
+                    <tbody>
+                </table>
                 <p></p>
                 <h5 class="text-primary">Изменить спецификацию</h5>
                 {{ specifications_formset.non_form_errors }}

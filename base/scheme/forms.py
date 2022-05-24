@@ -19,12 +19,12 @@ class EquipmentForm(forms.ModelForm):
         fields = ['equipment', 'room', 'mount_cab', 'ip_address', 'inv_number', 'id_number','description','locations_connect']
         widgets = {
            'equipment': forms.TextInput(attrs={'size':60}),
-           'room': forms.TextInput(attrs={'size':20}),
-           'mount_cab': forms.TextInput(attrs={'size':20}),
-           'ip_address': forms.TextInput(attrs={'size':20}),
-           'inv_number': forms.TextInput(attrs={'size':20}),
-           'id_number': forms.TextInput(attrs={'size':20}),
-           'description': forms.TextInput(attrs={'size':20}),}
+           'room': forms.TextInput(attrs={'size':60}),
+           'mount_cab': forms.TextInput(attrs={'size':60}),
+           'ip_address': forms.TextInput(attrs={'size':60}),
+           'inv_number': forms.TextInput(attrs={'size':60}),
+           'id_number': forms.TextInput(attrs={'size':60}),
+           'description': forms.TextInput(attrs={'size':60}),}
     
 class SpecificationsForm(forms.ModelForm):
     class Meta:
@@ -147,7 +147,7 @@ class GroupedCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
 class ChannelForm(forms.ModelForm):
     class Meta:
         model = Channels
-        fields = ['channel_name', 'object_a', 'object_b','traffic','description','equipment_connect',]
+        fields = ['channel_name', 'object_a', 'object_b','traffic','description','channel_scheme', 'channel_card','equipment_connect',]
         widgets = {
            'channel_name': forms.TextInput(attrs={'size':100}),
            'object_a': forms.TextInput(attrs={'size':100}),

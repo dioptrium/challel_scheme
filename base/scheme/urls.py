@@ -18,4 +18,4 @@ urlpatterns = [
     path('<int:pk>/channel_detail_view', permission_required('scheme.view_channels')(views.ChannelDetailView.as_view()), name='url_channel_detail_view'),
     path('create_channel', permission_required('scheme.add_channels')(views.CreateChannelView), name='url_create_channel'),
     path('<int:pk>/update_channel', permission_required('scheme.change_сhannels')(views.UpdateChannelView.as_view()), name= 'url_update_channel'),
-]
+] 

@@ -8,6 +8,8 @@ class Channels(models.Model):
     description = models.CharField(max_length=3000, verbose_name='Описание', blank=True)
     equipment_connect = models.ManyToManyField ('Equipment', 
                         related_name='equipmentcon', verbose_name='Оборудование')
+    channel_scheme = models.FileField(upload_to='channel_scheme', null=True, blank=True, verbose_name='Схема канала')
+    channel_card = models.FileField(upload_to='channel_card', null=True, blank=True, verbose_name='Карточка канала')
     class Meta:
             verbose_name = 'Канал'
             verbose_name_plural = 'Каналы'
@@ -24,7 +26,7 @@ class Equipment(models.Model):
     mount_cab = models.CharField(max_length=200, verbose_name='Монтажный шкаф', blank=True)
     ip_address = models.CharField(max_length=200, verbose_name='IP адрес', blank=True)
     inv_number = models.CharField(max_length=200, verbose_name='Инвентарный номер', blank=True)
-    id_number = models.CharField(max_length=200, verbose_name='ID', blank=True)
+    id_number = models.CharField(max_length=200, verbose_name='Идентификатор', blank=True)
     locations_connect = models.ForeignKey('Locations', on_delete=models.PROTECT,
                         related_name='locationcon', verbose_name='Месторасположение') 
     class Meta:

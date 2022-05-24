@@ -7,9 +7,21 @@
 
 
 <script type="text/html" id="item-template">
-    <div class="d-flex py-1 inline" id="item-__prefix__">
-        <div >{{equipment_formset.empty_form.equipment.label}}: {{ equipment_formset.empty_form.equipment }}</div>&nbsp
-        <div >{{equipment_formset.empty_form.description.label}}: {{ equipment_formset.empty_form.description }}</div>
+    <div id="item-__prefix__">  
+        <div class="card col-6">
+            <div>&nbsp</div>
+                <table>
+            <tbody>
+                <tr><td>{{equipment_formset.empty_form.equipment.label}}:</td><td> {{ equipment_formset.empty_form.equipment }}</td></tr>
+                <tr><td>{{equipment_formset.empty_form.room.label}}:</td><td>  {{ equipment_formset.empty_form.room }}</td></tr>
+                <tr><td>{{equipment_formset.empty_form.mount_cab.label}}:</td><td>  {{ equipment_formset.empty_form.mount_cab }}</td></tr>
+                <tr><td>{{equipment_formset.empty_form.ip_address.label}}:</td><td>  {{ equipment_formset.empty_form.ip_address }}</td></tr>
+                <tr><td>{{equipment_formset.empty_form.inv_number.label}}:</td><td>  {{ equipment_formset.empty_form.inv_number }}</td></tr>
+                <tr><td>{{equipment_formset.empty_form.id_number.label}}:</td><td>   {{ equipment_formset.empty_form.id_number }}</td></tr>
+                <tr><td>{{equipment_formset.empty_form.description.label}}:</td><td>  {{ equipment_formset.empty_form.description }}</td></tr>
+            </tbody>
+        </table>
+        </div>
     </div>
 </script>
 
@@ -37,20 +49,22 @@
                 {{ equipment_formset.management_form }}
             <div id="items-form-container">
                 {% for form in equipment_formset %}
-                <div class="py-1 inline {{ product_meta_formset.prefix }}" id="item-{{ forloop.counter0 }}">
-                    <div class="d-flex">
-                        <div >{{form.equipment.label}}: {{ form.equipment }}</div>&nbsp 
-                        <div >{{form.room.label}}: {{ form.room }}</div>&nbsp 
-                        <div >{{form.mount_cab.label}}: {{ form.mount_cab }}</div>&nbsp
-                    </div> <br>
-                    <div class="d-flex">
-                    <div >{{form.ip_address.label}}: {{ form.ip_address }}</div>&nbsp
-                    <div >{{form.inv_number.label}}: {{ form.inv_number }}</div>&nbsp
-                    <div >{{form.id_number.label}}: {{ form.id_number }}</div>&nbsp
-                    <div >{{form.description.label}}: {{ form.description }}</div>
-                     {% if equipment_formset.can_delete %}&nbsp&nbsp
+                <div class="card col-6 {{ product_meta_formset.prefix }}" id="item-{{ forloop.counter0 }}">
+                    <div>&nbsp</div>
+                    <table>
+                        <tbody>
+                            <br>
+                            <tr><td>{{form.equipment.label}}:<td/><td>{{ form.equipment }}</td></tr>
+                            <tr><td>{{form.mount_cab.label}}:<td/><td>{{ form.mount_cab }}</td></tr>
+                            <tr><td>{{form.ip_address.label}}:<td/><td>{{ form.ip_address }}</td></tr>
+                            <tr><td>{{form.inv_number.label}}:<td/><td>{{ form.inv_number }}</td></tr>
+                            <tr><td>{{form.id_number.label}}:<td/><td>{{ form.id_number }}</td></tr>
+                            <tr><td>{{form.description.label}}:<td/><td>{{ form.description }}</td></tr>
+                            
+                        </tbody>
+                    </table>
+                     {% if equipment_formset.can_delete %}&nbsp
                         <div class="ml-4">{{ form.DELETE.label }} {{ form.DELETE }}</div>
-                    </div>
                     {% endif %}
                 </div> 
             </div><br>
