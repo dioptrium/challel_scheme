@@ -149,7 +149,7 @@ def CreateChannelView(request):
     locations = Locations.objects.all()
     error=''
     if request.method=='POST':
-        form= ChannelForm(request.POST)
+        form= ChannelForm(request.POST, request.FILES)
         form_2 = SpecificationsForm(request.POST)
         form_3 = EquipmentForm(request.POST)
         if form.is_valid():

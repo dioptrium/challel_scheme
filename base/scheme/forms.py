@@ -1,8 +1,10 @@
 from ast import Eq
 from cProfile import label
+from fileinput import FileInput
 from django import forms
+from pkg_resources import require
 from .models import Channels, Equipment, Locations, Specifications
-from django.forms import ModelMultipleChoiceField, formset_factory, inlineformset_factory
+from django.forms import FileField, ModelMultipleChoiceField, formset_factory, inlineformset_factory
 
 
 class LocationForm(forms.ModelForm):
@@ -144,16 +146,23 @@ class GroupedCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
             'group': group,
         }
 
+from django.forms.widgets import ClearableFileInput
+class MyClearableFileInput(ClearableFileInput):
+    initial_text = 'Файл'
+    input_text = 'Изменить'
+    clear_checkbox_label = 'Удалить'
+        
 class ChannelForm(forms.ModelForm):
     class Meta:
         model = Channels
         fields = ['channel_name', 'object_a', 'object_b','traffic','description','channel_scheme', 'channel_card','equipment_connect',]
+        
         widgets = {
            'channel_name': forms.TextInput(attrs={'size':100}),
            'object_a': forms.TextInput(attrs={'size':100}),
            'object_b': forms.TextInput(attrs={'size':100}),
            'traffic': forms.TextInput(attrs={'size':100}),
-           'description': forms.TextInput(attrs={'size':100}),}
+           'description': forms.TextInput(attrs={'size':100})}
         
     def __init__(self, *args, **kwargs):
         super(ChannelForm, self).__init__(*args, **kwargs)
@@ -162,3 +171,4 @@ class ChannelForm(forms.ModelForm):
             queryset=Equipment.objects.all().order_by('equipment'),
             widget=forms.CheckboxSelectMultiple(),
             required=False)
+

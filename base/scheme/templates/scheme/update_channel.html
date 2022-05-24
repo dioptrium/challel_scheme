@@ -5,7 +5,7 @@
 
 <div>
   
-    <form method='POST'>
+    <form method='POST' enctype="multipart/form-data">
     {% csrf_token %}
     
     <div class="card">
@@ -44,7 +44,7 @@
                   <span class="badge rounded-pill bg-danger">{{ error }}</span>
             </div>
             <div class="col-2 align-items-start">
-                  <button type="submit" class="px-5 btn btn-primary "> Изменить </button>   
+                  <button type="submit" class="px-5 btn btn-primary " > Изменить </button>   
             </div>
             
       </div>
