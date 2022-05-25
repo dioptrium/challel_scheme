@@ -3,12 +3,21 @@
 {% block title %} Изменение объекта {% endblock %}
 
 {% block content %}
-
+<!--JS для добавления строки с новым оборудованием-->
 <script type="text/html" id="item-template">
-    <div class="d-flex py-1 inline" id="item-__prefix__">
-        <div >{{equipment_formset.empty_form.equipment.label}}: {{ equipment_formset.empty_form.equipment }}</div>&nbsp
-        <div >{{equipment_formset.empty_form.description.label}}: {{ equipment_formset.empty_form.description }}</div>
-        <br><br>
+    <div class="card col-6" id="item-__prefix__">
+        <div>&nbsp</div>
+        <table>
+            <tbody>
+        <tr><td>{{equipment_formset.empty_form.equipment.label}}:</td><td> {{ equipment_formset.empty_form.equipment }}</td></tr>
+        <tr><td>{{equipment_formset.empty_form.room.label}}:</td><td> {{ equipment_formset.empty_form.room }}</td></tr>
+        <tr><td>{{equipment_formset.empty_form.mount_cab.label}}:</td><td> {{ equipment_formset.empty_form.mount_cab }}</td></tr>
+        <tr><td>{{equipment_formset.empty_form.ip_address.label}}:</td><td> {{ equipment_formset.empty_form.ip_address }}</td></tr>
+        <tr><td>{{equipment_formset.empty_form.inv_number.label}}:</td><td> {{ equipment_formset.empty_form.inv_number }}</td></tr>
+        <tr><td>{{equipment_formset.empty_form.id_number.label}}:</td><td> {{ equipment_formset.empty_form.id_number }}</td></tr>
+        <tr><td>{{equipment_formset.empty_form.description.label}}:</td><td> {{ equipment_formset.empty_form.description }}</td></tr>
+    </tbody>
+</table>
     </div>
 </script>
 

@@ -1,5 +1,5 @@
 from django.db import models
-
+# Каналы
 class Channels(models.Model):
     channel_name = models.CharField(max_length=300, unique=True, verbose_name='Наименование канала')
     object_a = models.CharField(max_length=100, verbose_name='Объект А')
@@ -19,6 +19,7 @@ class Channels(models.Model):
     def get_absolute_url(self):
         return f'/scheme/{self.id}/channel_detail_view'
 
+# Оборудование
 class Equipment(models.Model):
     equipment = models.CharField(max_length=100, verbose_name='Оборудование')
     description = models.CharField(max_length=200, verbose_name='Описание', blank=True)
@@ -37,7 +38,7 @@ class Equipment(models.Model):
     def get_absolute_url(self):
         return f'/scheme/{self.id}/equipment_detail_view'
         
-
+#Объекты
 class Locations(models.Model):
     location = models.CharField(max_length=100, unique=True, verbose_name='Название объекта')
     address = models.CharField(max_length=300, verbose_name='Адрес объекта', blank=True)
@@ -49,6 +50,7 @@ class Locations(models.Model):
     def get_absolute_url(self):
         return f'/scheme/{self.id}/location_detail_view'
 
+#Спецификация оборудования
 class Specifications(models.Model):
     specification = models.ForeignKey('Equipment',on_delete=models.PROTECT, related_name='specificationcon', blank=True, verbose_name='Спецификация')
     channel_connect = models.ForeignKey('Channels',on_delete=models.PROTECT, related_name='channelcon', null=True, verbose_name='Канал')

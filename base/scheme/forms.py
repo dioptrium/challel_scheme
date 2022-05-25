@@ -6,7 +6,7 @@ from pkg_resources import require
 from .models import Channels, Equipment, Locations, Specifications
 from django.forms import FileField, ModelMultipleChoiceField, formset_factory, inlineformset_factory
 
-
+#Форма для объектов
 class LocationForm(forms.ModelForm):
     class Meta:
         model=Locations
@@ -14,7 +14,8 @@ class LocationForm(forms.ModelForm):
         widgets = {
            'location': forms.TextInput(attrs={'size':100}),
            'address': forms.TextInput(attrs={'size':100}),}
-        
+
+#Форма для оборудования
 class EquipmentForm(forms.ModelForm):
     class Meta:
         model=Equipment
@@ -27,7 +28,8 @@ class EquipmentForm(forms.ModelForm):
            'inv_number': forms.TextInput(attrs={'size':60}),
            'id_number': forms.TextInput(attrs={'size':60}),
            'description': forms.TextInput(attrs={'size':60}),}
-    
+
+#Форма для спецификации оборудования
 class SpecificationsForm(forms.ModelForm):
     class Meta:
         model=Specifications
@@ -37,8 +39,7 @@ class SpecificationsForm(forms.ModelForm):
 EquipmentInlineFormset = inlineformset_factory(Locations, Equipment, form=EquipmentForm, extra=1)
 SpecificationInlineFormset = inlineformset_factory(Equipment,Specifications, form=SpecificationsForm, extra=1)
 
-'''Переопределение ModelMultipleChoiceField'''
-
+#Переопределение ModelMultipleChoiceFiel dля отображения оборудования, сгруппированного по объектам     
 from itertools import groupby
 from django.forms.models import ModelChoiceIterator, ModelMultipleChoiceField
 
@@ -151,7 +152,8 @@ class MyClearableFileInput(ClearableFileInput):
     initial_text = 'Файл'
     input_text = 'Изменить'
     clear_checkbox_label = 'Удалить'
-        
+
+#Форма длфя каналов        
 class ChannelForm(forms.ModelForm):
     class Meta:
         model = Channels
@@ -163,7 +165,8 @@ class ChannelForm(forms.ModelForm):
            'object_b': forms.TextInput(attrs={'size':100}),
            'traffic': forms.TextInput(attrs={'size':100}),
            'description': forms.TextInput(attrs={'size':100})}
-        
+
+    #Переопределение CheckboxSelectMultiple для отображения оборудования, сгруппированного по объектам     
     def __init__(self, *args, **kwargs):
         super(ChannelForm, self).__init__(*args, **kwargs)
         self.fields['equipment_connect'] = GroupedModelMultipleChoiceField(
