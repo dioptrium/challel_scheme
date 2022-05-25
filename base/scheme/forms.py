@@ -153,7 +153,7 @@ class MyClearableFileInput(ClearableFileInput):
     input_text = 'Изменить'
     clear_checkbox_label = 'Удалить'
 
-#Форма длфя каналов        
+#Форма для каналов        
 class ChannelForm(forms.ModelForm):
     class Meta:
         model = Channels

@@ -57,6 +57,7 @@ $(function() {
         // extra css class name (string or array) added to the filter element (input or select)
         filter_cssFilter: "form-control",
 
+        // resizable table column
         resizable: true,
         // These are the default column widths which are used when the table is
         // initialized or resizing is reset; note that the "Age" column is not
@@ -76,48 +77,11 @@ $(function() {
       print_styleSheet : '../css/theme.blue.css', // add the url of your print stylesheet
       print_now        : true,        // Open the print dialog immediately if true
       
-    
-        /* код сохранения в csv - не работающий (выключен)
-        output_separator     : ',',         // ',' 'json', 'array' or separator (e.g. ';')
-        output_ignoreColumns : [],         // columns to ignore [0, 1,... ] (zero-based index)
-        output_hiddenColumns : false,       // include hidden columns in the output
-        output_includeFooter : true,        // include footer rows in the output
-        output_includeHeader : true,        // include header rows in the output
-        output_headerRows    : false,       // output all header rows (if multiple rows)
-        output_dataAttrib    : 'data-name', // data-attribute containing alternate cell text
-        output_delivery      : 'd',         // (p)opup, (d)ownload
-        output_saveRows      : 'f',         // (a)ll, (v)isible, (f)iltered, jQuery filter selector (string only) or filter function
-        output_duplicateSpans: true,        // duplicate output data in tbody colspan/rowspan
-        output_replaceQuote  : '\u201c;',   // change quote to left double quote
-        output_includeHTML   : true,        // output includes all cell HTML (except the header cells)
-        output_trimSpaces    : false,       // remove extra white-space characters from beginning & end
-        output_wrapQuotes    : true,       // wrap every cell output in quotes
-        output_popupStyle    : 'width=580,height=310',
-        output_saveFileName  : 'mytable.xls',
-        */
       }
 
       
     })
-    /*
-   .tablesorterPager({
-  
-      // target the pager markup - see the HTML block below
-      container: $(".ts-pager"),
-  
-      // target the pager page select dropdown - choose a page
-      cssGoto  : ".pagenum",
-  
-      // remove rows from the table to speed up the sort of large tables.
-      // setting this to false, only hides the non-visible rows; needed if you plan to add/remove rows with the pager enabled.
-      removeRows: false,
-  
-      // output string - default is '{page}/{totalPages}';
-      // possible variables: {page}, {totalPages}, {filteredPages}, {startRow}, {endRow}, {filteredRows} and {totalRows}
-      output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
-  
-    });
-    */
+
     $('.print').click(function() {
       $('.tablesorter').trigger('printTable');
     });
@@ -159,24 +123,6 @@ function exportTableToExcel(tableID, filename = ''){
     $("#hidebutton").hide('slow').show('slow');
   });
 
-  
-  
-/*$(document).ready(function() {
-  var $elFrom = $('td[id="from1"]').value;
-  $('td[id="in"]').text($elFrom);
-  });
-  
-  const addMoreBtn =  document.getElementById('add-more')
-    addMoreBtn.addEventListener('click', add_new_form)
-    function add_new_form(event) {
-      if (event) {
-          event.preventDefault()
-      }
-      const formCopyTarget = document.getElementById('clone-form-list')
-      const emptyFormEl = document.getElementById('empty-form').cloneNode(true)
-      emptyFormEl.setAttribute('class', 'clone-form')
-      formCopyTarget.append(emptyFormEl)
-    }*/
   /*Добавление строки оборудования и спецификации*/
     
   $(document).ready(function() {
@@ -198,6 +144,3 @@ function exportTableToExcel(tableID, filename = ''){
       });
       
 
-
-      
-      /**/
